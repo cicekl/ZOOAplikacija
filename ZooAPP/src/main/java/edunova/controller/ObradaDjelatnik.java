@@ -37,6 +37,7 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
     private void kontrolaIme() throws ZooException {
         KontrolaImeNull();
         KontrolaImeBroj();
+        
     }
 
     private void KontrolaImeNull() throws ZooException {
@@ -46,8 +47,19 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
         }
     }
 
-    private void KontrolaImeBroj() {
-        
+    private void KontrolaImeBroj() throws ZooException {
+         boolean broj = false;
+
+        try {
+            Double.parseDouble(entitet.getIme());
+            
+            broj = true;
+        } catch (Exception e) {
+
+        }
+        if (broj) {
+            throw new ZooException("Ime ne može biti broj!");
+        }
     }
     
     
