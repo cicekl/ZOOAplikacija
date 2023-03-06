@@ -51,6 +51,7 @@ public class Prostorija extends Entitet{
     }
 
     public Prostorija() {
+        super();
     }
 
     public Prostorija(Integer sirina, Integer visina, Integer duzina, String naziv, int sifra) {

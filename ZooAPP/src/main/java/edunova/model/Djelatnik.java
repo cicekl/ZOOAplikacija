@@ -42,6 +42,7 @@ public class Djelatnik extends Entitet {
     }
 
     public Djelatnik() {
+        super();
     }
 
     public Djelatnik(String ime, String prezime, String IBAN, int sifra) {
