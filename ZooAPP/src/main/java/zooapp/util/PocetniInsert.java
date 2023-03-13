@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edunova.util;
+package zooapp.util;
 
 import com.github.javafaker.Faker;
-import edunova.model.Djelatnik;
-import edunova.model.Prostorija;
-import edunova.model.Zivotinja;
+import zooapp.model.Djelatnik;
+import zooapp.model.Prostorija;
+import zooapp.model.Zivotinja;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;

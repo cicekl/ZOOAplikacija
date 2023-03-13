@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edunova.controller;
+package zooapp.controller;
 
-import edunova.model.Entitet;
-import edunova.util.HibernateUtil;
-import edunova.util.ZooException;
+import zooapp.model.Entitet;
+import zooapp.util.HibernateUtil;
+import zooapp.util.ZooException;
 import java.util.List;
 import org.hibernate.Session;
 

@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package edunova;
+package zooapp;
 
-import edunova.util.HibernateUtil;
-import edunova.util.PocetniInsert;
+import zooapp.util.HibernateUtil;
+import zooapp.util.PocetniInsert;
 
 /**
  *
