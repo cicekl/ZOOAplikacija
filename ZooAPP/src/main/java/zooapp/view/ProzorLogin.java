@@ -4,9 +4,12 @@
  */
 package zooapp.view;
 
+import javax.swing.JOptionPane;
+import org.hibernate.Session;
 import zooapp.controller.ObradaOperater;
 import zooapp.model.Operater;
 import zooapp.util.Aplikacija;
+import zooapp.util.HibernateUtil;
 
 /**
  *
@@ -20,6 +23,7 @@ public class ProzorLogin extends javax.swing.JFrame {
      * Creates new form ProzorIzbornik
      */
     public ProzorLogin() {
+        ucitaj();
         initComponents();
         obrada = new ObradaOperater();
         setTitle(Aplikacija.NAZIV_APP + " Login");
@@ -167,4 +171,35 @@ public class ProzorLogin extends javax.swing.JFrame {
     private javax.swing.JPasswordField passLozinka;
     private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
+
+    private void ucitaj() {
+        new Ucitanje().start();
+    }
+    
+    private class Ucitanje extends Thread{
+        
+         @Override
+        public void run() {
+
+            Session s = HibernateUtil.getSession();
+
+            if(!s.getMetamodel().getEntities().isEmpty()){
+                ObradaOperater op = new ObradaOperater();
+                if(op.read().isEmpty()){
+                    op.unosAdminOperatera();
+                }
+            }else{
+                JOptionPane.showMessageDialog(
+                        getRootPane(), 
+                        "Problem s bazom podataka");
+            }
+
+
+
+
+        }
+        
+        
+    }
+    
 }
