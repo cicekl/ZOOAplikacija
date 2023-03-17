@@ -4,6 +4,7 @@
  */
 package zooapp.controller;
 
+import jakarta.persistence.NoResultException;
 import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 import zooapp.model.Operater;
@@ -48,9 +49,7 @@ public class ObradaOperater extends Obrada<Operater>{
         o.setPrezime("Operater");
         o.setEmail("admin@zoo.hr");
         o.setOib("08872767447");
-        o.setLozinka(BCrypt.hashpw("zooloskiAdmin", BCrypt.gensalt()).toCharArray());
-        
-        setEntitet(o);
+        o.setLozinka(BCrypt.hashpw("zooAdmin", BCrypt.gensalt()).toCharArray());
         
         entitet=o;
         try {
@@ -66,7 +65,7 @@ public class ObradaOperater extends Obrada<Operater>{
             o = session.createQuery("from Operater o where o.email=:email",
                     Operater.class).setParameter("email", email)
                     .getSingleResult();
-        } catch (Exception e) {
+        } catch (NoResultException e) {
             return null;
         }
         
