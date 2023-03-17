@@ -6,6 +6,7 @@ package zooapp;
 
 import zooapp.util.HibernateUtil;
 import zooapp.util.PocetniInsert;
+import zooapp.view.ProzorLogin;
 
 /**
  *
@@ -15,7 +16,9 @@ public class Start {
 
     public static void main(String[] args) {
        
-       // HibernateUtil.getSession();
+      //HibernateUtil.getSession();
        // PocetniInsert.izvedi();
+       new ProzorLogin().setVisible(true);
     }
 }
+

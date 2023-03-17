@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package zooapp.model;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import java.util.Date;

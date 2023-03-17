@@ -16,14 +16,11 @@
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>    
     
-    <mapping class="edunova.model.Zivotinja"/>
-    <mapping class="edunova.model.Prostorija"/>
-    <mapping class="edunova.model.Djelatnik"/>
+    <mapping class="zooapp.model.Zivotinja"/>
+    <mapping class="zooapp.model.Prostorija"/>
+    <mapping class="zooapp.model.Djelatnik"/>
+    <mapping class="zooapp.model.Operater"/>
 
-    
-    
-    
-    
   </session-factory>
 </hibernate-configuration>
 
