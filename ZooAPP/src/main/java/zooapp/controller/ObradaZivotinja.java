@@ -19,8 +19,15 @@ public class ObradaZivotinja extends Obrada<Zivotinja>{
 
     @Override
     public List<Zivotinja> read() {
-        return session.createQuery("from Zivotinja",Zivotinja.class).list();
+        return session.createQuery("from Zivotinja order by vrsta, ime",Zivotinja.class).list();
 
+    }
+    
+    public List<Zivotinja> read(String uvjet) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+        return session.createQuery("from Zivotinja where concat(vrsta,' ',ime,' ',zivotinjskaVrsta,vrsta) like :uvjet order by vrsta, ime ", Zivotinja.class).
+                setParameter("uvjet", uvjet).setMaxResults(20).list();
     }
 
     @Override

@@ -124,6 +124,11 @@ public class Zivotinja extends Entitet{
         this.djelatnik = djelatnik;
         this.prostorija = prostorija;
     }
+
+    @Override
+    public String toString() {
+        return vrsta + " - " + ime +"\n";
+    }
     
     
 }

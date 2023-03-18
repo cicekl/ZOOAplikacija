@@ -10,6 +10,6 @@ package zooapp.util;
  */
 public class Aplikacija {
     
-    public static final String NAZIV_APP="Zoo";
+    public static final String NAZIV_APP="ZOO";
     
 }

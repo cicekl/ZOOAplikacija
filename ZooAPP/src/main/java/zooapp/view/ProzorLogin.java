@@ -5,6 +5,7 @@
 package zooapp.view;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import org.hibernate.Session;
 import zooapp.controller.ObradaOperater;
 import zooapp.model.Operater;
@@ -16,7 +17,7 @@ import zooapp.util.HibernateUtil;
  * @author Lorena
  */
 public class ProzorLogin extends javax.swing.JFrame {
-    
+
     private ObradaOperater obrada;
 
     /**
@@ -27,32 +28,36 @@ public class ProzorLogin extends javax.swing.JFrame {
         initComponents();
         obrada = new ObradaOperater();
         setTitle(Aplikacija.NAZIV_APP + " Login");
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+        }
     }
-    
-     private void autoriziraj() {
-         lblPoruka.setText(" ");
-         if(txtEmail.getText().isEmpty()) {
-             lblPoruka.setText("Obavezno unijeti email!");
-             return;
-         }
-         
-         if(passLozinka.getPassword().length==0) {
-             lblPoruka.setText("Obavezno unijeti lozinku!");
-             return;
-         }
-         
-         Operater o = obrada.autoriziraj(txtEmail.getText(), passLozinka.getPassword());
-              
-         if(o==null){
-             lblPoruka.setText("Neispravna kombinacija email-a i lozinke!");
-             return;
-         }
-         
-         new ProzorIzbornik().setVisible(true);
-         dispose();
-         
-     }
-    
+
+    private void autoriziraj() {
+        lblPoruka.setText(" ");
+        if (txtEmail.getText().isEmpty()) {
+            lblPoruka.setText("Obavezno unijeti email!");
+            return;
+        }
+
+        if (passLozinka.getPassword().length == 0) {
+            lblPoruka.setText("Obavezno unijeti lozinku!");
+            return;
+        }
+
+        Operater o = obrada.autoriziraj(txtEmail.getText(), passLozinka.getPassword());
+
+        if (o == null) {
+            lblPoruka.setText("Neispravna kombinacija email-a i lozinke!");
+            return;
+        }
+
+        new ProzorIzbornik().setVisible(true);
+        dispose();
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,11 +77,12 @@ public class ProzorLogin extends javax.swing.JFrame {
         lblPoruka = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(206, 230, 255));
+        setBackground(new java.awt.Color(204, 204, 204));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setForeground(java.awt.Color.white);
 
-        jLabel1.setText("Email");
+        jLabel1.setFont(new java.awt.Font("Sitka Display", 1, 14)); // NOI18N
+        jLabel1.setText("EMAIL");
 
         txtEmail.setText("admin@zoo.hr");
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +91,8 @@ public class ProzorLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Password");
+        jLabel2.setFont(new java.awt.Font("Sitka Display", 1, 14)); // NOI18N
+        jLabel2.setText("PASSWORD");
 
         passLozinka.setText("zooAdmin");
         passLozinka.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +103,7 @@ public class ProzorLogin extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\dog-and-cat-paw-prints-collection-paw-icon-set-black-icon-free-vector-removebg-preview.png")); // NOI18N
 
+        btnPrijava.setBackground(new java.awt.Color(198, 225, 252));
         btnPrijava.setText("Prijava");
         btnPrijava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +146,7 @@ public class ProzorLogin extends javax.swing.JFrame {
                 .addComponent(passLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblPoruka)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnPrijava)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,31 +186,27 @@ public class ProzorLogin extends javax.swing.JFrame {
     private void ucitaj() {
         new Ucitanje().start();
     }
-    
-    private class Ucitanje extends Thread{
-        
-         @Override
+
+    private class Ucitanje extends Thread {
+
+        @Override
         public void run() {
 
             Session s = HibernateUtil.getSession();
 
-            if(!s.getMetamodel().getEntities().isEmpty()){
+            if (!s.getMetamodel().getEntities().isEmpty()) {
                 ObradaOperater op = new ObradaOperater();
-                if(op.read().isEmpty()){
+                if (op.read().isEmpty()) {
                     op.unosAdminOperatera();
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(
-                        getRootPane(), 
+                        getRootPane(),
                         "Problem s bazom podataka");
             }
 
-
-
-
         }
-        
-        
+
     }
-    
+
 }
