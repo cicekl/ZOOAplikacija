@@ -72,6 +72,9 @@ public class ProzorLogin extends javax.swing.JFrame {
         lblPoruka = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(206, 230, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setForeground(java.awt.Color.white);
 
         jLabel1.setText("Email");
 
