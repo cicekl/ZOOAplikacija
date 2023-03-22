@@ -4,6 +4,8 @@
  */
 package zooapp.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lorena
@@ -35,13 +37,13 @@ public class ProzorIzbornik extends javax.swing.JFrame {
         btnDjelatnici = new javax.swing.JButton();
         btnProstorije = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnOpisAplikacije = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
         jMenu2.setText("jMenu2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\logo.png")); // NOI18N
@@ -80,12 +82,12 @@ public class ProzorIzbornik extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(198, 225, 252));
-        jButton1.setFont(new java.awt.Font("Sitka Display", 1, 14)); // NOI18N
-        jButton1.setText("O aplikaciji");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOpisAplikacije.setBackground(new java.awt.Color(198, 225, 252));
+        btnOpisAplikacije.setFont(new java.awt.Font("Sitka Display", 1, 14)); // NOI18N
+        btnOpisAplikacije.setText("O aplikaciji");
+        btnOpisAplikacije.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnOpisAplikacijeActionPerformed(evt);
             }
         });
 
@@ -106,7 +108,7 @@ public class ProzorIzbornik extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnOpisAplikacije)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4))
                     .addGroup(layout.createSequentialGroup()
@@ -133,7 +135,7 @@ public class ProzorIzbornik extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton4)
-                            .addComponent(jButton1))
+                            .addComponent(btnOpisAplikacije))
                         .addContainerGap(21, Short.MAX_VALUE))))
         );
 
@@ -154,9 +156,9 @@ public class ProzorIzbornik extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDjelatniciActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnOpisAplikacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpisAplikacijeActionPerformed
+        JOptionPane.showMessageDialog(getRootPane(), "Aplikacija za zoološki vrt koja sadrži opis životinja te opis njihovih djelatnika i okruženja u kojima se nalaze.","Opis aplikacije",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnOpisAplikacijeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,9 +167,9 @@ public class ProzorIzbornik extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDjelatnici;
+    private javax.swing.JButton btnOpisAplikacije;
     private javax.swing.JButton btnProstorije;
     private javax.swing.JButton btnZivotinje;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

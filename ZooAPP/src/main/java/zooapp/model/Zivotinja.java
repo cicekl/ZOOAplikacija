@@ -27,6 +27,7 @@ public class Zivotinja extends Entitet{
     @ManyToOne
     private Prostorija prostorija;
 
+
     public int getMinimalnaKvadratura() {
         return minimalnaKvadratura;
     }

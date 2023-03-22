@@ -6,6 +6,8 @@ package zooapp.view;
 
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import zooapp.controller.ObradaZivotinja;
 import zooapp.model.Zivotinja;
 
@@ -16,13 +18,23 @@ import zooapp.model.Zivotinja;
 public class ProzorZivotinje extends javax.swing.JFrame {
 
     private ObradaZivotinja obradaZ;
-    
+    private ZivotinjaPregled zp;
     /**
      * Creates new form ProzorZivotinje
      */
     public ProzorZivotinje() {
         initComponents();
         obradaZ = new ObradaZivotinja();
+       // zp = new ZivotinjaPregled();
+        setTitle("Životinje");
+        txtPretraga.requestFocus();
+        
+    }
+    
+     public ProzorZivotinje(ZivotinjaPregled zp) {
+        initComponents();
+        obradaZ = new ObradaZivotinja();
+        this.zp = zp;
         setTitle("Životinje");
         txtPretraga.requestFocus();
     }
@@ -46,9 +58,9 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         lstLista = new javax.swing.JList<>();
         btnPretraga = new javax.swing.JButton();
         btnIzmjena = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnPregled = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnUnos = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         jMenu1.setText("File");
@@ -84,6 +96,11 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         lstLista.setBackground(new java.awt.Color(207, 214, 221));
         lstLista.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstLista.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lstLista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstListaValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstLista);
 
         btnPretraga.setBackground(new java.awt.Color(198, 225, 252));
@@ -97,17 +114,22 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         btnIzmjena.setBackground(new java.awt.Color(198, 225, 252));
         btnIzmjena.setText("Izmjena ");
 
-        jButton2.setBackground(new java.awt.Color(198, 225, 252));
-        jButton2.setText("Pregled");
+        btnPregled.setBackground(new java.awt.Color(198, 225, 252));
+        btnPregled.setText("Pregled");
+        btnPregled.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPregledActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(198, 225, 252));
         jButton3.setText("Brisanje");
 
-        jButton4.setBackground(new java.awt.Color(198, 225, 252));
-        jButton4.setText("Unos nove");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnUnos.setBackground(new java.awt.Color(198, 225, 252));
+        btnUnos.setText("Unos nove");
+        btnUnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnUnosActionPerformed(evt);
             }
         });
 
@@ -136,18 +158,16 @@ public class ProzorZivotinje extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62)
                         .addComponent(btnIzmjena, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)
                                 .addGap(19, 19, 19))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnUnos, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(99, 99, 99)
@@ -166,10 +186,11 @@ public class ProzorZivotinje extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIzmjena, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUnos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPregled, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnIzmjena, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,9 +213,9 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPretragaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosActionPerformed
+        new ZivotinjaUnos().setVisible(true);
+    }//GEN-LAST:event_btnUnosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -210,6 +231,30 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPretragaKeyPressed
 
+    private void btnPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPregledActionPerformed
+        if(lstLista.getSelectedValue() == null || lstLista.getSelectedValue().equals(null)) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenu životinju!","Upozorenje",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        obradaZ.setEntitet(lstLista.getSelectedValue());
+           var s = obradaZ.getEntitet();
+          // System.out.println(s.getIme());
+           zp = new ZivotinjaPregled(s.getIme(),s.getZivotinjskaVrsta(),s.getVrsta());
+           zp.prikazi();
+     
+    }//GEN-LAST:event_btnPregledActionPerformed
+
+    private void lstListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstListaValueChanged
+//       if(!evt.getValueIsAdjusting()) {
+//           obradaZ.setEntitet(lstLista.getSelectedValue());
+//           var s = obradaZ.getEntitet();
+//          // System.out.println(s.getIme());
+//           zp = new ZivotinjaPregled(s.getIme());
+//           zp.prikazi();
+//           
+//       }
+    }//GEN-LAST:event_lstListaValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -217,11 +262,11 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzmjena;
+    private javax.swing.JButton btnPregled;
     private javax.swing.JButton btnPretraga;
+    private javax.swing.JButton btnUnos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JMenu jMenu1;
@@ -239,4 +284,15 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         lstLista.setModel(z);
         lstLista.repaint();
     }
+
+    public JList<Zivotinja> getlstLista() {
+        return lstLista;
+    }
+
+    public void setlstLista(JList<Zivotinja> lstLista) {
+        this.lstLista = lstLista;
+    }
+
+   
+    
 }

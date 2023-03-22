@@ -40,7 +40,7 @@ public class ObradaProstorija extends Obrada<Prostorija> {
     }
 
     private void KontrolaNazivNull() throws ZooException {
-        if(entitet.getNaziv()==null){
+        if(entitet.getNaziv()==null || entitet.getNaziv().isEmpty()){
             throw new ZooException("Naziv mora biti unešen!");
         }
     }

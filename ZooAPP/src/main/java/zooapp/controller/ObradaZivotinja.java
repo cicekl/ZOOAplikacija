@@ -32,8 +32,10 @@ public class ObradaZivotinja extends Obrada<Zivotinja>{
 
     @Override
     protected void kontrolaUnos() throws ZooException {
-        kontrolaMinimalnaKvadratura();
-        kontrolaMinimalnaKubikaza();
+//        kontrolaMinimalnaKvadratura();
+//        kontrolaMinimalnaKubikaza();
+          kontrolaIme();
+          kontrolaVrsta();
     }
 
     @Override
@@ -44,16 +46,68 @@ public class ObradaZivotinja extends Obrada<Zivotinja>{
     protected void kontrolaBrisanje() throws ZooException {
     }
 
-    private void kontrolaMinimalnaKvadratura()throws ZooException {
-        if(entitet.getMinimalnaKvadratura()>(p.getSirina()*p.getDuzina())) {
-            throw new ZooException("Prostorija ne zadovoljava uvjete minimalne kvadrature za odabranu životinju!");
-        }
-        
+//    private void kontrolaMinimalnaKvadratura()throws ZooException {
+//        if(entitet.getMinimalnaKvadratura()>(p.getSirina()*p.getDuzina())) {
+//            throw new ZooException("Prostorija ne zadovoljava uvjete minimalne kvadrature za odabranu životinju!");
+//        }
+//        
+//    }
+//
+//    private void kontrolaMinimalnaKubikaza() throws ZooException {
+//        if(entitet.getMinimalnaKvadratura()>(p.getSirina()*p.getDuzina()*p.getVisina())) {
+//            throw new ZooException("Prostorija ne zadovoljava uvjete minimalne kubikaže za odabranu životinju!");
+//        }
+//    }
+
+    private void kontrolaIme() throws ZooException {
+        kontrolaImeNull();
+        kontrolaImeBroj();
     }
 
-    private void kontrolaMinimalnaKubikaza() throws ZooException {
-        if(entitet.getMinimalnaKvadratura()>(p.getSirina()*p.getDuzina()*p.getVisina())) {
-            throw new ZooException("Prostorija ne zadovoljava uvjete minimalne kubikaže za odabranu životinju!");
+    private void kontrolaImeNull() throws ZooException {
+        if(entitet.getIme()==null || entitet.getIme().isEmpty()){
+            throw new ZooException("Ime mora biti unešeno!");
+        }
+    }
+
+    private void kontrolaImeBroj() throws ZooException {
+         boolean broj = false;
+
+        try {
+            Double.parseDouble(entitet.getIme());
+            
+            broj = true;
+        } catch (Exception e) {
+
+        }
+        if (broj) {
+            throw new ZooException("Ime ne može biti broj!");
+        }
+    }
+
+    private void kontrolaVrsta() throws ZooException {
+        kontrolaNull();
+        kontrolaBroj();
+    }
+
+    private void kontrolaNull() throws ZooException {
+        if(entitet.getVrsta()==null || entitet.getVrsta().isEmpty()){
+            throw new ZooException("Vrsta mora biti unešena!");
+        }
+    }
+
+    private void kontrolaBroj() throws ZooException {
+         boolean broj = false;
+
+        try {
+            Double.parseDouble(entitet.getVrsta());
+            
+            broj = true;
+        } catch (Exception e) {
+
+        }
+        if (broj) {
+            throw new ZooException("Vrsta ne može biti broj!");
         }
     }
     

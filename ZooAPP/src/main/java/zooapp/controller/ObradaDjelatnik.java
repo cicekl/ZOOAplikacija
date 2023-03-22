@@ -44,7 +44,7 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
 
     private void KontrolaImeNull() throws ZooException {
        
-        if(entitet.getIme()==null){
+        if(entitet.getIme()==null || entitet.getIme().isEmpty()){
             throw new ZooException("Ime mora biti unešeno!");
         }
     }
@@ -70,7 +70,7 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
     }
 
     private void KontrolaPrezimeNull() throws ZooException {
-         if(entitet.getPrezime()==null){
+         if(entitet.getPrezime()==null || entitet.getPrezime().isEmpty()){
             throw new ZooException("Prezime mora biti unešeno!");
         }
     }
