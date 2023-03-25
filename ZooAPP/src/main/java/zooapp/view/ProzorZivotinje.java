@@ -4,7 +4,11 @@
  */
 package zooapp.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Locale;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -134,7 +138,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(198, 225, 252));
-        jButton5.setText("Opis");
+        jButton5.setText("Statistika");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -239,8 +243,11 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         obradaZ.setEntitet(lstLista.getSelectedValue());
            var s = obradaZ.getEntitet();
           // System.out.println(s.getIme());
-           zp = new ZivotinjaPregled(s.getIme(),s.getZivotinjskaVrsta(),s.getVrsta());
-           zp.prikazi();
+         LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+         LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+         LocalDate dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+         zp = new ZivotinjaPregled(s.getIme(),s.getZivotinjskaVrsta(),s.getVrsta(),s.getDjelatnik(),s.getProstorija(),dR,dD,dS);
+         zp.prikazi();
      
     }//GEN-LAST:event_btnPregledActionPerformed
 
@@ -292,6 +299,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     public void setlstLista(JList<Zivotinja> lstLista) {
         this.lstLista = lstLista;
     }
+
 
    
     

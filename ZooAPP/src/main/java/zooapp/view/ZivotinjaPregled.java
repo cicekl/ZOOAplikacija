@@ -4,10 +4,17 @@
  */
 package zooapp.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import zooapp.controller.ObradaZivotinja;
+import zooapp.model.Djelatnik;
+import zooapp.model.Prostorija;
 import zooapp.model.Zivotinja;
 
 /**
@@ -29,20 +36,39 @@ public class ZivotinjaPregled extends javax.swing.JFrame {
         lblSM.setVisible(false);
     }
     
-     public ZivotinjaPregled(String ime, String zivotinjskaVrsta,String vrsta) {
+     public ZivotinjaPregled(String ime, String zivotinjskaVrsta,String vrsta,Djelatnik djelatnik,Prostorija prostorija,LocalDate datumR,LocalDate datumD,LocalDate datumS) {
         initComponents();
         obradaZ = new ObradaZivotinja();
         lblPR.setVisible(false);
         lblDJ.setVisible(false);
         lblSM.setVisible(false);
-        napuniView(ime,zivotinjskaVrsta,vrsta);
+        lblDjelatnik.setVisible(false);
+        lblProstorija.setVisible(false);
+        dpSmrt.setVisible(false);
+        DatePickerSettings dps = new DatePickerSettings(new Locale("hr","HR"));
+        dps.setFormatForDatesCommonEra("dd. MM. YYYY.");
+        DatePickerSettings dD = new DatePickerSettings(new Locale("hr","HR"));
+        dD.setFormatForDatesCommonEra("dd. MM. YYYY.");
+        DatePickerSettings dS = new DatePickerSettings(new Locale("hr","HR"));
+        dS.setFormatForDatesCommonEra("dd. MM. YYYY.");
+        dpRodjenje.setSettings(dps);
+        dpDolazak.setSettings(dD);
+        dpSmrt.setSettings(dS);
+        
+        napuniView(ime,zivotinjskaVrsta,vrsta,djelatnik,prostorija,Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()),Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()),Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
     }
    
-    public void napuniView(String ime, String zivotinjskaVrsta,String vrsta) {
+    public void napuniView(String ime, String zivotinjskaVrsta,String vrsta,Djelatnik djelatnik,Prostorija prostorija,Date datumR,Date datumD,Date datumS) {
      //  System.out.println(ime + " iz viewa");
        lblName.setText(ime.toUpperCase());
        lblZivVrsta.setText(zivotinjskaVrsta.toUpperCase());
        lblVrsta.setText(vrsta.toUpperCase());
+      // lblProstorija.setText(prostorija.toUpperCase());
+       lblDjelatnik.setText(djelatnik.getIme().toUpperCase() + " " + djelatnik.getPrezime().toUpperCase());
+       lblProstorija.setText(prostorija.getNaziv().toUpperCase());
+       dpRodjenje.setDate(datumR.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+       dpDolazak.setDate(datumD.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+       dpSmrt.setDate(datumS.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
     }
     
     public void prikazi() {
@@ -71,8 +97,15 @@ public class ZivotinjaPregled extends javax.swing.JFrame {
         lblName = new javax.swing.JLabel();
         lblZivVrsta = new javax.swing.JLabel();
         lblVrsta = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblProstorija = new javax.swing.JLabel();
+        lblDjelatnik = new javax.swing.JLabel();
+        dpDolazak = new com.github.lgooddatepicker.components.DatePicker();
+        dpRodjenje = new com.github.lgooddatepicker.components.DatePicker();
+        dpSmrt = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pregled životinja");
 
         jLabel2.setText("IME:");
 
@@ -107,6 +140,14 @@ public class ZivotinjaPregled extends javax.swing.JFrame {
         lblVrsta.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
         lblVrsta.setForeground(new java.awt.Color(21, 21, 255));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\ziv.png")); // NOI18N
+
+        lblProstorija.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
+        lblProstorija.setForeground(new java.awt.Color(21, 21, 255));
+
+        lblDjelatnik.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
+        lblDjelatnik.setForeground(new java.awt.Color(21, 21, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,58 +156,89 @@ public class ZivotinjaPregled extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDJ)
-                            .addComponent(lblSM))
+                        .addComponent(lblSM)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dpSmrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblDJ)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDjelatnik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(lblPR)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblProstorija, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblZivVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblZivVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(btnViseInfo)
-                            .addComponent(lblPR))
-                        .addGap(206, 206, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dpRodjenje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dpDolazak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnViseInfo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(11, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(73, Short.MAX_VALUE)
+                                .addComponent(jLabel2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblZivVrsta, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(lblVrsta))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(dpRodjenje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(dpDolazak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnViseInfo))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
-                .addGap(9, 9, 9)
+                    .addComponent(lblPR)
+                    .addComponent(lblProstorija))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lblZivVrsta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lblDJ)
+                    .addComponent(lblDjelatnik))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lblVrsta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addGap(23, 23, 23)
-                .addComponent(btnViseInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblPR)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblDJ)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblSM)
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(lblSM)
+                    .addComponent(dpSmrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,6 +249,9 @@ public class ZivotinjaPregled extends javax.swing.JFrame {
         lblPR.setVisible(true);
         lblDJ.setVisible(true);
         lblSM.setVisible(true);
+        lblDjelatnik.setVisible(true);
+        lblProstorija.setVisible(true);
+        dpSmrt.setVisible(true);
     }//GEN-LAST:event_btnViseInfoActionPerformed
 
     /**
@@ -185,14 +260,20 @@ public class ZivotinjaPregled extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnViseInfo;
+    private com.github.lgooddatepicker.components.DatePicker dpDolazak;
+    private com.github.lgooddatepicker.components.DatePicker dpRodjenje;
+    private com.github.lgooddatepicker.components.DatePicker dpSmrt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblDJ;
+    private javax.swing.JLabel lblDjelatnik;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPR;
+    private javax.swing.JLabel lblProstorija;
     private javax.swing.JLabel lblSM;
     private javax.swing.JLabel lblVrsta;
     private javax.swing.JLabel lblZivVrsta;

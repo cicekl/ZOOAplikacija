@@ -229,7 +229,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fc" green="e1" red="c6" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Opis"/>
+        <Property name="text" type="java.lang.String" value="Statistika"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
