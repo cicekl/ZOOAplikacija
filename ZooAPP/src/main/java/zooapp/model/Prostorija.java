@@ -61,6 +61,12 @@ public class Prostorija extends Entitet{
         this.duzina = duzina;
         this.naziv = naziv;
     }
+
+    @Override
+    public String toString() {
+        return naziv;
+    }
+   
     
     
 }
