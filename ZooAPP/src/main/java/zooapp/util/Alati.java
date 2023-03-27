@@ -7,6 +7,7 @@ package zooapp.util;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Random;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import us.codecraft.xsoup.Xsoup;
@@ -17,6 +18,10 @@ import us.codecraft.xsoup.Xsoup;
  * @author Lorena
  */
 public class Alati {
+    
+    private static final int IBAN_LENGTH = 21;
+    private static final String COUNTRY_CODE = "HR";
+    private static final String ACCOUNT_NUMBER_PATTERN = "%019d";
     
      public static String dovuciOib() {
 
@@ -68,6 +73,32 @@ public class Alati {
         }
         return true;
     }
+    
+    public static String generirajIBAN() {
+        
+        // Generate a random account number with 19 digits
+        Random random = new Random();
+        long accountNumber = random.nextLong() % 1_000_000_000_000_000_000L;
+
+        // Format the account number with leading zeros
+        String formattedAccountNumber = String.format(ACCOUNT_NUMBER_PATTERN, Math.abs(accountNumber));
+
+        // Concatenate the country code and the formatted account number
+        String iban = COUNTRY_CODE + formattedAccountNumber;
+
+        return iban;
+        
+    }
+    
+//    private static int mod97(String value) {
+//        // Implement the mod-97 algorithm for calculating the check digits
+//        int checksum = 0;
+//        for (int i = 0; i < value.length(); i++) {
+//            int digit = Character.getNumericValue(value.charAt(i));
+//            checksum = (checksum * 10 + digit) % 97;
+//        }
+//        return checksum;
+//    }
     
 }
 

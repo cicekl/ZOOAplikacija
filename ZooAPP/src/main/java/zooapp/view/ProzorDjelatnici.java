@@ -230,7 +230,7 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPregledDActionPerformed
 
     private void btnUnosDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosDActionPerformed
-        new ZivotinjaUnos().setVisible(true);
+      new DjelatnikUnos().setVisible(true);
     }//GEN-LAST:event_btnUnosDActionPerformed
 
     private void btnStatistikaDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatistikaDActionPerformed
