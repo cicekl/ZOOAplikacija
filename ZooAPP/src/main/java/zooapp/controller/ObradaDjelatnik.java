@@ -20,6 +20,13 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
     public List<Djelatnik> read() {
         return session.createQuery("from Djelatnik",Djelatnik.class).list();
     }
+    
+    public List<Djelatnik> read(String uvjet) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+        return session.createQuery("from Djelatnik where concat(ime,' ',prezime,' ',ime) like :uvjet order by prezime, ime ", Djelatnik.class).
+                setParameter("uvjet", uvjet).setMaxResults(20).list();
+    }
 
     @Override
     protected void kontrolaUnos() throws ZooException {

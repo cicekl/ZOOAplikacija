@@ -153,7 +153,8 @@ public class ProzorIzbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnDjelatniciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDjelatniciActionPerformed
-        // TODO add your handling code here:
+        new ProzorDjelatnici().setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnDjelatniciActionPerformed
 
     private void btnOpisAplikacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpisAplikacijeActionPerformed

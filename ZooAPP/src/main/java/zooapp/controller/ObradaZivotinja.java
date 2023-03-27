@@ -34,16 +34,34 @@ public class ObradaZivotinja extends Obrada<Zivotinja>{
     protected void kontrolaUnos() throws ZooException {
 //        kontrolaMinimalnaKvadratura();
 //        kontrolaMinimalnaKubikaza();
+          kontrolaPopunjenaPolja();
           kontrolaIme();
           kontrolaVrsta();
+          kontrolaProstorija();
+          kontrolaDatum();
     }
 
     @Override
     protected void kontrolaPromjena() throws ZooException {
+        kontrolaPopunjenaPolja();
+          kontrolaIme();
+          kontrolaVrsta();
+          kontrolaProstorija();
+          kontrolaDatum();
     }
 
     @Override
     protected void kontrolaBrisanje() throws ZooException {
+         if(entitet.getDatumSmrti()==null){
+            
+            StringBuilder sb = new StringBuilder();
+            sb.append("Odabrana ");
+            sb.append("životinja");
+            sb.append(" se ne može obrisati jer se nalazi u Zoološkom!");
+            sb.append("\n");
+            
+           throw new ZooException(sb.toString());
+        }
     }
 
 //    private void kontrolaMinimalnaKvadratura()throws ZooException {
@@ -110,5 +128,45 @@ public class ObradaZivotinja extends Obrada<Zivotinja>{
             throw new ZooException("Vrsta ne može biti broj!");
         }
     }
+
+    private void kontrolaPopunjenaPolja() throws ZooException {
+        String[] provjera = {entitet.getIme(), entitet.getZivotinjskaVrsta(), entitet.getVrsta()};
+        for (int i = 0; i < provjera.length; i++) {
+            if (provjera[i].isEmpty()) {
+                throw new ZooException("Sva polja moraju biti popunjena!");
+            }
+        }
+
+        if (entitet.getDatumDolaska()==null || entitet.getDatumRodenja()==null) {
+            throw new ZooException("Sva polja moraju biti popunjena!");
+        }
+        
+        if(entitet.getMinimalnaKubikaza()==0 || entitet.getMinimalnaKvadratura()==0) {
+            throw new ZooException("Sva polja moraju biti popunjena!");
+        }
+        
+        if(entitet.getDjelatnik()==null || entitet.getProstorija()==null) {
+            throw new ZooException("Sva polja moraju biti popunjena!");
+        }
+    }
+
+    private void kontrolaProstorija() throws ZooException {
+        if(entitet.getMinimalnaKvadratura()> (entitet.getProstorija().getDuzina()*entitet.getProstorija().getSirina())) {
+            throw new ZooException("Prostorija ne odgovara dimenzijama kvadrature za odabranu životinju!");
+        }
+        
+        if(entitet.getMinimalnaKubikaza()>(entitet.getProstorija().getDuzina()*entitet.getProstorija().getSirina()*entitet.getProstorija().getVisina())){
+            throw new ZooException("Prostorija ne odgovara dimenzijama kubikaže za odabranu životinju!");
+    }
     
+}
+
+    private void kontrolaDatum() throws ZooException {
+        
+      if(entitet.getDatumRodenja().compareTo(entitet.getDatumDolaska())>0) {
+          throw new ZooException("Datum rođenja nije dobro unesen!");
+      }
+       
+    }
+
 }
