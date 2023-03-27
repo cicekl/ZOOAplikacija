@@ -224,7 +224,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPretragaActionPerformed
 
     private void btnUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosActionPerformed
-        
+        new ZivotinjaUnos().setVisible(true);
     }//GEN-LAST:event_btnUnosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
