@@ -4,6 +4,10 @@
  */
 package zooapp.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaDjelatnik;
@@ -52,16 +56,16 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtMinKv = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txtMinKu = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblUspjeh = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
-        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
-        datePicker3 = new com.github.lgooddatepicker.components.DatePicker();
+        dpDD = new com.github.lgooddatepicker.components.DatePicker();
+        dpDR = new com.github.lgooddatepicker.components.DatePicker();
+        dpDS = new com.github.lgooddatepicker.components.DatePicker();
         cmbDjelatnik = new javax.swing.JComboBox<>();
         cmbProstorija = new javax.swing.JComboBox<>();
 
@@ -69,8 +73,8 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         setTitle("Unos nove životinje");
         setPreferredSize(null);
 
-        btnUnesi.setBackground(new java.awt.Color(198, 225, 252));
         btnUnesi.setText("Unesi");
+        btnUnesi.setBackground(new java.awt.Color(198, 225, 252));
         btnUnesi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUnesiActionPerformed(evt);
@@ -122,7 +126,7 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(datePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dpDD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel7)
@@ -144,16 +148,16 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(cmbProstorija, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jTextField8))
+                                                    .addComponent(txtMinKu))
                                                 .addGap(41, 41, 41)))
                                         .addComponent(jLabel11))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(dpDR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel6)
                                             .addComponent(jLabel3)
-                                            .addComponent(datePicker3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(dpDS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(txtVrsta)))
                                     .addComponent(txtZivVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap())
@@ -165,7 +169,7 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
                                 .addGap(44, 44, 44))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMinKv, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -192,17 +196,17 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(datePicker3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dpDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dpDR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dpDS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMinKv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMinKu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
@@ -251,9 +255,9 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
     private javax.swing.JButton btnUnesi;
     private javax.swing.JComboBox<Djelatnik> cmbDjelatnik;
     private javax.swing.JComboBox<Prostorija> cmbProstorija;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
-    private com.github.lgooddatepicker.components.DatePicker datePicker2;
-    private com.github.lgooddatepicker.components.DatePicker datePicker3;
+    private com.github.lgooddatepicker.components.DatePicker dpDD;
+    private com.github.lgooddatepicker.components.DatePicker dpDR;
+    private com.github.lgooddatepicker.components.DatePicker dpDS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -265,10 +269,10 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblUspjeh;
     private javax.swing.JTextField txtIme;
+    private javax.swing.JTextField txtMinKu;
+    private javax.swing.JTextField txtMinKv;
     private javax.swing.JTextField txtVrsta;
     private javax.swing.JTextField txtZivVrsta;
     // End of variables declaration//GEN-END:variables
@@ -279,6 +283,49 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         s.setIme(txtIme.getText());
         s.setZivotinjskaVrsta(txtZivVrsta.getText());
         s.setVrsta(txtVrsta.getText());
+        DatePickerSettings dpDolazak = 
+        new DatePickerSettings(new Locale("hr","HR"));
+        dpDolazak.setFormatForDatesCommonEra("dd. MM. YYYY.");
+        dpDolazak.setTranslationClear("Očisti");
+        dpDolazak.setTranslationToday("Danas");
+         DatePickerSettings dpRodenje = 
+        new DatePickerSettings(new Locale("hr","HR"));
+        dpRodenje.setFormatForDatesCommonEra("dd. MM. YYYY.");
+        dpRodenje.setTranslationClear("Očisti");
+        dpRodenje.setTranslationToday("Danas");
+         DatePickerSettings dpSmrt = 
+        new DatePickerSettings(new Locale("hr","HR"));
+        dpSmrt.setFormatForDatesCommonEra("dd. MM. YYYY.");
+        dpSmrt.setTranslationClear("Očisti");
+        dpSmrt.setTranslationToday("Danas");
+        dpDD.setSettings(dpDolazak);
+        dpDR.setSettings(dpRodenje);
+        dpDS.setSettings(dpSmrt);
+        s.setDatumRodenja(dpDR.getDate()!=null
+                            ? 
+                            Date.from(dpDR.getDate()
+                            .atStartOfDay()
+                            .atZone(ZoneId.systemDefault())
+                            .toInstant())
+                            : null);
+        s.setDatumDolaska(dpDD.getDate()!=null
+                            ? 
+                            Date.from(dpDD.getDate()
+                            .atStartOfDay()
+                            .atZone(ZoneId.systemDefault())
+                            .toInstant())
+                            : null);
+        s.setDatumSmrti(dpDS.getDate()!=null
+                            ? 
+                            Date.from(dpDS.getDate()
+                            .atStartOfDay()
+                            .atZone(ZoneId.systemDefault())
+                            .toInstant())
+                            : null);
+        s.setMinimalnaKvadratura(Integer.parseInt(txtMinKv.getText()));
+        s.setMinimalnaKubikaza(Integer.parseInt(txtMinKu.getText()));  
+        s.setDjelatnik((Djelatnik)cmbDjelatnik.getSelectedItem());
+        s.setProstorija((Prostorija)cmbProstorija.getSelectedItem());
     }
 
     private void ucitajDjelatnike() {

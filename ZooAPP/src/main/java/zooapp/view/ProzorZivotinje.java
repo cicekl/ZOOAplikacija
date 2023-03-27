@@ -14,6 +14,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaZivotinja;
 import zooapp.model.Zivotinja;
+import zooapp.util.ZooException;
 
 /**
  *
@@ -63,7 +64,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         btnPretraga = new javax.swing.JButton();
         btnIzmjena = new javax.swing.JButton();
         btnPregled = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnBrisanje = new javax.swing.JButton();
         btnUnos = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
@@ -126,8 +127,13 @@ public class ProzorZivotinje extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(198, 225, 252));
-        jButton3.setText("Brisanje");
+        btnBrisanje.setBackground(new java.awt.Color(198, 225, 252));
+        btnBrisanje.setText("Brisanje");
+        btnBrisanje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrisanjeActionPerformed(evt);
+            }
+        });
 
         btnUnos.setBackground(new java.awt.Color(198, 225, 252));
         btnUnos.setText("Unos nove");
@@ -177,7 +183,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
                 .addGap(99, 99, 99)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBrisanje, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -197,7 +203,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
                         .addComponent(btnIzmjena, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBrisanje, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -218,7 +224,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPretragaActionPerformed
 
     private void btnUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosActionPerformed
-        new ZivotinjaUnos().setVisible(true);
+        
     }//GEN-LAST:event_btnUnosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -262,18 +268,48 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 //       }
     }//GEN-LAST:event_lstListaValueChanged
 
+    private void btnBrisanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjeActionPerformed
+        if(lstLista.getSelectedValuesList()==null
+                || lstLista.getSelectedValuesList().isEmpty()){
+            JOptionPane.showMessageDialog(getRootPane(),
+                    "Prvo odaberite životinju za brisanje!");
+            return;
+        }
+        
+         if(JOptionPane.showConfirmDialog(
+                getRootPane(),
+                "Želite li sigurno obrisati " + obradaZ.getEntitet().getIme() + " " + "(" + obradaZ.getEntitet().getZivotinjskaVrsta() + ")"  + "?",
+                "Brisanje",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
+            return;
+        }
+         
+         try {
+            obradaZ.delete();
+            ucitaj();
+        } catch (ZooException ex) {
+            JOptionPane.showMessageDialog(
+                    getRootPane(),
+                    ex.getPoruka());
+        }
+         
+         
+        
+    }//GEN-LAST:event_btnBrisanjeActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBrisanje;
     private javax.swing.JButton btnIzmjena;
     private javax.swing.JButton btnPregled;
     private javax.swing.JButton btnPretraga;
     private javax.swing.JButton btnUnos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JMenu jMenu1;

@@ -85,7 +85,7 @@
               <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
               <Component id="jButton5" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="110" max="-2" attributes="0"/>
+              <Component id="btnBrisanje" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -110,7 +110,7 @@
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton3" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="btnBrisanje" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="jButton5" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="65" max="32767" attributes="0"/>
@@ -205,13 +205,16 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPregledActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="btnBrisanje">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fc" green="e1" red="c6" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Brisanje"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrisanjeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnUnos">
       <Properties>
