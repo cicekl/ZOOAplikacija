@@ -247,7 +247,6 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
     }//GEN-LAST:event_txtImeActionPerformed
 
     private void btnPromjenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjenaActionPerformed
-        obradaZ.setEntitet(new Zivotinja());
         napuniModel();
         try {
             obradaZ.update();

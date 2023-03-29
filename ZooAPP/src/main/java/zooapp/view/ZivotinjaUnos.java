@@ -277,7 +277,6 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void napuniModel() {
-      
         var s = obradaZ.getEntitet();
         s.setIme(txtIme.getText());
         s.setZivotinjskaVrsta(txtZivVrsta.getText());
