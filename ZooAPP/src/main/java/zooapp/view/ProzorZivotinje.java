@@ -24,6 +24,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 
     private ObradaZivotinja obradaZ;
     private ZivotinjaPregled zp;
+    private ZivotinjaPromjena zpr;
     /**
      * Creates new form ProzorZivotinje
      */
@@ -40,6 +41,14 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         initComponents();
         obradaZ = new ObradaZivotinja();
         this.zp = zp;
+        setTitle("Životinje");
+        txtPretraga.requestFocus();
+    }
+     
+      public ProzorZivotinje(ZivotinjaPromjena zpr) {
+        initComponents();
+        obradaZ = new ObradaZivotinja();
+        this.zpr = zpr;
         setTitle("Životinje");
         txtPretraga.requestFocus();
     }
@@ -118,6 +127,11 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 
         btnIzmjena.setBackground(new java.awt.Color(198, 225, 252));
         btnIzmjena.setText("Izmjena ");
+        btnIzmjena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzmjenaActionPerformed(evt);
+            }
+        });
 
         btnPregled.setBackground(new java.awt.Color(198, 225, 252));
         btnPregled.setText("Pregled");
@@ -297,6 +311,22 @@ public class ProzorZivotinje extends javax.swing.JFrame {
          
         
     }//GEN-LAST:event_btnBrisanjeActionPerformed
+
+    private void btnIzmjenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmjenaActionPerformed
+         if(lstLista.getSelectedValue() == null || lstLista.getSelectedValue().equals(null)) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenu životinju!","Upozorenje",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        obradaZ.setEntitet(lstLista.getSelectedValue());
+        System.out.println(obradaZ.getEntitet().getIme());
+         var s = obradaZ.getEntitet();
+          // System.out.println(s.getIme());
+         LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+         LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+         LocalDate dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+         zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS,s.getMinimalnaKvadratura(),s.getMinimalnaKubikaza());
+         zpr.prikazi();
+    }//GEN-LAST:event_btnIzmjenaActionPerformed
 
     /**
      * @param args the command line arguments

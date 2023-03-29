@@ -30,6 +30,7 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
 
     @Override
     protected void kontrolaUnos() throws ZooException {
+        kontrolaPopunjenaPolja();
         kontrolaIme();
         kontrolaPrezime();
         kontrolaIBAN();
@@ -114,6 +115,15 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
         }
         if (!provjera) {
             throw new ZooException("IBAN nije u dobrom formatu!");
+        }
+    }
+
+    private void kontrolaPopunjenaPolja() throws ZooException {
+         String[] provjera = {entitet.getIme(), entitet.getPrezime(), entitet.getIBAN()};
+        for (int i = 0; i < provjera.length; i++) {
+            if (provjera[i].isEmpty()) {
+                throw new ZooException("Sva polja moraju biti popunjena!");
+            }
         }
     }
     
