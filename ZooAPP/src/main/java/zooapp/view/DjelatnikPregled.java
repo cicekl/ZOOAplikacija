@@ -4,17 +4,30 @@
  */
 package zooapp.view;
 
+import zooapp.controller.ObradaDjelatnik;
+
 /**
  *
  * @author Lorena
  */
 public class DjelatnikPregled extends javax.swing.JFrame {
+    
+    private ObradaDjelatnik obradaD;
 
     /**
      * Creates new form DjelatnikPregled
      */
     public DjelatnikPregled() {
         initComponents();
+        obradaD = new ObradaDjelatnik();
+         setTitle("Pregled djelatnika");
+        
+    }
+    
+    public DjelatnikPregled(String ime, String prezime) {
+        initComponents();
+        obradaD = new ObradaDjelatnik();
+        napuniView(ime,prezime);
     }
 
     /**
@@ -29,6 +42,8 @@ public class DjelatnikPregled extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        lblI = new javax.swing.JLabel();
+        lblP = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -38,26 +53,42 @@ public class DjelatnikPregled extends javax.swing.JFrame {
 
         jLabel3.setText("PREZIME:");
 
+        lblI.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
+        lblI.setForeground(new java.awt.Color(51, 51, 255));
+
+        lblP.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
+        lblP.setForeground(new java.awt.Color(51, 51, 255));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel2)
-                .addGap(46, 46, 46)
-                .addComponent(jLabel3)
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(lblI))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(lblP))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 20, Short.MAX_VALUE)
@@ -77,5 +108,16 @@ public class DjelatnikPregled extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblI;
+    private javax.swing.JLabel lblP;
     // End of variables declaration//GEN-END:variables
+
+    private void napuniView(String ime, String prezime) {
+        lblI.setText(ime.toUpperCase());
+        lblP.setText(prezime.toUpperCase());
+    }
+
+    void prikazi() {
+        setVisible(true);
+    }
 }

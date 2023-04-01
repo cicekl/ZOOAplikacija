@@ -5,11 +5,15 @@
 package zooapp.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
+import java.awt.Frame;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaDjelatnik;
 import zooapp.controller.ObradaProstorija;
@@ -26,6 +30,8 @@ import zooapp.util.ZooException;
 public class ZivotinjaPromjena extends javax.swing.JFrame {
 
     ObradaZivotinja obradaZ;
+    private Integer sifra;
+    
 
     /**
      * Creates new form ZivotinjaPromjena
@@ -37,11 +43,15 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
 //        ucitajProstorije();
     }
 
-    public ZivotinjaPromjena(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, LocalDate datumR, LocalDate datumD, LocalDate datumS, Integer minKv, Integer minKu) {
+    public ZivotinjaPromjena(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, LocalDate datumR, LocalDate datumD, LocalDate datumS, Integer minKv, Integer minKu,Integer sifra) {
         initComponents();
         obradaZ = new ObradaZivotinja();
+        this.sifra=sifra;
         napuniView(ime, zivotinjskaVrsta, vrsta, djelatnik, prostorija, Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), minKv, minKu);
     }
+    
+      
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -228,7 +238,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
                                 .addGap(124, 124, 124))
                             .addComponent(jLabel11))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnPromjena)
                     .addComponent(lblUspjeh))
                 .addGap(21, 21, 21))
@@ -250,6 +260,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         napuniModel();
         try {
             obradaZ.update();
+            //model.setElementAt(obradaZ.getEntitet(),lista.getSelectedIndex());
             lblUspjeh.setText("Životinja uspješno promijenjena!");
         } catch (ZooException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
@@ -362,7 +373,10 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
     }
 
     private void napuniModel() {
+        obradaZ.getEntitet();
+       // System.out.println(obradaZ.getEntitet().getIme());
         var s = obradaZ.getEntitet();
+        System.out.println(s.getIme());
         s.setIme(txtIme.getText());
         s.setZivotinjskaVrsta(txtZivVrsta.getText());
         s.setVrsta(txtVrsta.getText());

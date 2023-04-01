@@ -148,9 +148,9 @@
                   </Group>
               </Group>
               <EmptySpace pref="55" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnPromjena" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblUspjeh" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblUspjeh" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
@@ -259,10 +259,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnPromjena">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Promjena"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fc" green="e1" red="c6" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Promjena"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>

@@ -8,11 +8,14 @@ import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaZivotinja;
+import zooapp.model.Djelatnik;
+import zooapp.model.Prostorija;
 import zooapp.model.Zivotinja;
 import zooapp.util.ZooException;
 
@@ -25,6 +28,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     private ObradaZivotinja obradaZ;
     private ZivotinjaPregled zp;
     private ZivotinjaPromjena zpr;
+    
     /**
      * Creates new form ProzorZivotinje
      */
@@ -290,6 +294,8 @@ public class ProzorZivotinje extends javax.swing.JFrame {
             return;
         }
         
+        obradaZ.setEntitet(lstLista.getSelectedValue());
+        
          if(JOptionPane.showConfirmDialog(
                 getRootPane(),
                 "Želite li sigurno obrisati " + obradaZ.getEntitet().getIme() + " " + "(" + obradaZ.getEntitet().getZivotinjskaVrsta() + ")"  + "?",
@@ -318,14 +324,14 @@ public class ProzorZivotinje extends javax.swing.JFrame {
             return;
         }
         obradaZ.setEntitet(lstLista.getSelectedValue());
-        System.out.println(obradaZ.getEntitet().getIme());
          var s = obradaZ.getEntitet();
           // System.out.println(s.getIme());
          LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
          LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
          LocalDate dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS,s.getMinimalnaKvadratura(),s.getMinimalnaKubikaza());
+         zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS,s.getMinimalnaKvadratura(),s.getMinimalnaKubikaza(),lstLista.getSelectedValue().getSifra());
          zpr.prikazi();
+         
     }//GEN-LAST:event_btnIzmjenaActionPerformed
 
     /**
@@ -366,7 +372,26 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         this.lstLista = lstLista;
     }
 
-
+//public void updateList(String ime, String zivotinjskaVrsta, String vrsta, Date datumRodenja, Date datumDolaska, Date datumSmrti, int minimalnaKvadratura, int minimalnaKubikaza, Djelatnik djelatnik, Prostorija prostorija) {
+//    obradaZ.setEntitet(lstLista.getSelectedValue());
+//    var s = obradaZ.getEntitet();
+//    s.setIme(ime);
+//    s.setZivotinjskaVrsta(zivotinjskaVrsta);
+//    s.setVrsta(vrsta);
+//    s.setDatumRodenja(datumRodenja);
+//    s.setDatumDolaska(datumDolaska);
+//    s.setDatumSmrti(datumSmrti);
+//    s.setMinimalnaKvadratura(minimalnaKvadratura);
+//    s.setMinimalnaKubikaza(minimalnaKubikaza);
+//    s.setDjelatnik(djelatnik);
+//    s.setProstorija(prostorija);
+//    try {
+//            obradaZ.update();
+//            lblUspjeh.setText("Životinja uspješno promijenjena!");
+//        } catch (ZooException ex) {
+//            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
+//        }
+//}
    
     
 }

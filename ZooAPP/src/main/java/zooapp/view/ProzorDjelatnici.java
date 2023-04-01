@@ -6,9 +6,11 @@ package zooapp.view;
 
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import zooapp.controller.ObradaDjelatnik;
 import zooapp.model.Djelatnik;
 import zooapp.model.Zivotinja;
+import zooapp.util.ZooException;
 
 /**
  *
@@ -17,6 +19,7 @@ import zooapp.model.Zivotinja;
 public class ProzorDjelatnici extends javax.swing.JFrame {
 
     private ObradaDjelatnik obradaD;
+    private DjelatnikPregled dp;
     /**
      * Creates new form ProzorDjelatnici
      */
@@ -24,6 +27,14 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
         initComponents();
         obradaD = new ObradaDjelatnik();
        // zp = new ZivotinjaPregled();
+        setTitle("Djelatnici");
+        txtPretragaD.requestFocus();
+    }
+    
+      public ProzorDjelatnici(DjelatnikPregled dp) {
+        initComponents();
+        obradaD = new ObradaDjelatnik();
+        this.dp = dp;
         setTitle("Djelatnici");
         txtPretragaD.requestFocus();
     }
@@ -214,18 +225,16 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPregledDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPregledDActionPerformed
-//        if(lstLista.getSelectedValue() == null || lstLista.getSelectedValue().equals(null)) {
-//            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenu životinju!","Upozorenje",JOptionPane.INFORMATION_MESSAGE);
-//            return;
-//        }
-//        obradaZ.setEntitet(lstLista.getSelectedValue());
-//        var s = obradaZ.getEntitet();
+        if(lstListaD.getSelectedValue() == null || lstListaD.getSelectedValue().equals(null)) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenog djelatnika!","Upozorenje",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        obradaD.setEntitet(lstListaD.getSelectedValue());
+        var s = obradaD.getEntitet();
 //        // System.out.println(s.getIme());
-//        LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//        LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//        LocalDate dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        dp = new DjelatnikPregled(obradaD.getEntitet().getIme(), obradaD.getEntitet().getPrezime());
 //        zp = new ZivotinjaPregled(s.getIme(),s.getZivotinjskaVrsta(),s.getVrsta(),s.getDjelatnik(),s.getProstorija(),dR,dD,dS);
-//        zp.prikazi();
+      dp.prikazi();
 
     }//GEN-LAST:event_btnPregledDActionPerformed
 
@@ -238,30 +247,32 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStatistikaDActionPerformed
 
     private void btnBrisanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjeActionPerformed
-//        if(lstLista.getSelectedValuesList()==null
-//            || lstLista.getSelectedValuesList().isEmpty()){
-//            JOptionPane.showMessageDialog(getRootPane(),
-//                "Prvo odaberite životinju za brisanje!");
-//            return;
-//        }
-//
-//        if(JOptionPane.showConfirmDialog(
-//            getRootPane(),
-//            "Želite li sigurno obrisati " + obradaZ.getEntitet().getIme() + " " + "(" + obradaZ.getEntitet().getZivotinjskaVrsta() + ")"  + "?",
-//            "Brisanje",
-//            JOptionPane.YES_NO_OPTION,
-//            JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
-//        return;
-//        }
-//
-//        try {
-//            obradaZ.delete();
-//            ucitaj();
-//        } catch (ZooException ex) {
-//            JOptionPane.showMessageDialog(
-//                getRootPane(),
-//                ex.getPoruka());
-//        }
+        if(lstListaD.getSelectedValuesList()==null
+            || lstListaD.getSelectedValuesList().isEmpty()){
+            JOptionPane.showMessageDialog(getRootPane(),
+                "Prvo odaberite djelatnika za brisanje!");
+            return;
+        }
+        
+        obradaD.setEntitet(lstListaD.getSelectedValue());
+
+        if(JOptionPane.showConfirmDialog(
+            getRootPane(),
+            "Želite li sigurno obrisati " + obradaD.getEntitet().getIme() + " " + obradaD.getEntitet().getPrezime()  + " ?",
+            "Brisanje",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
+        return;
+        }
+
+        try {
+            obradaD.delete();
+            //ucitaj();
+        } catch (ZooException ex) {
+            JOptionPane.showMessageDialog(
+                getRootPane(),
+                ex.getPoruka());
+        }
 
     }//GEN-LAST:event_btnBrisanjeActionPerformed
 

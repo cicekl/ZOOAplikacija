@@ -4,8 +4,10 @@
  */
 package zooapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import zooapp.model.Prostorija;
+import zooapp.model.Zivotinja;
 import zooapp.util.ZooException;
 
 /**
@@ -13,10 +15,20 @@ import zooapp.util.ZooException;
  * @author Lorena
  */
 public class ObradaProstorija extends Obrada<Prostorija> {
+    
+    private List<Zivotinja> zivotinje;
+    private ObradaZivotinja oz;
 
     @Override
     public List<Prostorija> read() {
                 return session.createQuery("from Prostorija",Prostorija.class).list();
+    }
+    
+     public List<Prostorija> read(String uvjet) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+        return session.createQuery("from Prostorija where concat(naziv,' ',duzina,' ',sirina,' ',visina,' ',naziv) like :uvjet order by naziv ", Prostorija.class).
+                setParameter("uvjet", uvjet).setMaxResults(20).list();
     }
 
     @Override
@@ -29,10 +41,28 @@ public class ObradaProstorija extends Obrada<Prostorija> {
 
     @Override
     protected void kontrolaPromjena() throws ZooException {
+        kontrolaNaziv();
+        kontrolaSirina();
+        kontrolaVisina();
+        kontrolaDuzina();
     }
 
     @Override
     protected void kontrolaBrisanje() throws ZooException {
+         zivotinje = new ArrayList<>();
+        oz = new ObradaZivotinja();
+        zivotinje = oz.read();
+        for(Zivotinja z: zivotinje) {
+            if(z.getProstorija()==entitet) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Odabrana ");
+            sb.append("prostorija");
+            sb.append(" se ne može obrisati jer se u njoj nalaze životinje!");
+            sb.append("\n");
+            
+           throw new ZooException(sb.toString());
+            }
+        }
     }
 
     private void kontrolaNaziv() throws ZooException {

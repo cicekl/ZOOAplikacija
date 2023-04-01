@@ -24,6 +24,7 @@ public class DjelatnikUnos extends javax.swing.JFrame {
     public DjelatnikUnos() {
         initComponents();
         obradaD = new ObradaDjelatnik();
+         setTitle("Unos djelatnika");
         
     }
 

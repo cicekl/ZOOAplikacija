@@ -4,16 +4,21 @@
  */
 package zooapp.controller;
 
+import java.util.ArrayList;
 import zooapp.model.Djelatnik;
 import zooapp.util.ZooException;
 import java.util.List;
 import org.hibernate.Session;
+import zooapp.model.Zivotinja;
 
 /**
  *
  * @author Lorena
  */
 public class ObradaDjelatnik extends Obrada<Djelatnik>{
+    
+    private List<Zivotinja> zivotinje;
+    private ObradaZivotinja oz;
 
 
     @Override
@@ -38,10 +43,28 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
 
     @Override
     protected void kontrolaPromjena() throws ZooException {
+         kontrolaPopunjenaPolja();
+        kontrolaIme();
+        kontrolaPrezime();
+        kontrolaIBAN();
     }
 
     @Override
     protected void kontrolaBrisanje() throws ZooException {
+        zivotinje = new ArrayList<>();
+        oz = new ObradaZivotinja();
+        zivotinje = oz.read();
+        for(Zivotinja z: zivotinje) {
+            if(z.getDjelatnik()==entitet) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Odabrani ");
+            sb.append("djelatnik");
+            sb.append(" se ne može obrisati jer radi sa životinjama!");
+            sb.append("\n");
+            
+           throw new ZooException(sb.toString());
+            }
+        }
     }
 
     private void kontrolaIme() throws ZooException {

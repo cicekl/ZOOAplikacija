@@ -72,6 +72,11 @@ public class ProzorIzbornik extends javax.swing.JFrame {
         btnProstorije.setBackground(new java.awt.Color(198, 225, 252));
         btnProstorije.setFont(new java.awt.Font("Sitka Display", 1, 18)); // NOI18N
         btnProstorije.setText("Prostorije");
+        btnProstorije.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProstorijeActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(198, 225, 252));
         jButton4.setFont(new java.awt.Font("Sitka Display", 1, 14)); // NOI18N
@@ -160,6 +165,11 @@ public class ProzorIzbornik extends javax.swing.JFrame {
     private void btnOpisAplikacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpisAplikacijeActionPerformed
         JOptionPane.showMessageDialog(getRootPane(), "Aplikacija za zoološki vrt koja sadrži opis životinja te opis njihovih djelatnika i okruženja u kojima se nalaze.","Opis aplikacije",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnOpisAplikacijeActionPerformed
+
+    private void btnProstorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProstorijeActionPerformed
+        new ProzorProstorije().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnProstorijeActionPerformed
 
     /**
      * @param args the command line arguments
