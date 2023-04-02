@@ -9,8 +9,11 @@ import java.awt.Frame;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -89,10 +92,10 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         txtMinKu = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtZivVrsta = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnPromjena = new javax.swing.JButton();
         lblUspjeh = new javax.swing.JLabel();
+        cmbZivotinjskeVrste = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Izmjena postojeće životinje");
@@ -142,6 +145,12 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
 
         lblUspjeh.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
 
+        cmbZivotinjskeVrste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbZivotinjskeVrsteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,15 +174,15 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
                             .addComponent(txtMinKv, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
-                            .addComponent(txtZivVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dpDR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dpDR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5)
-                            .addComponent(txtMinKu, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbProstorija, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMinKu)
+                            .addComponent(cmbProstorija, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel8)
+                            .addComponent(cmbZivotinjskeVrste, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -196,7 +205,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtZivVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbZivotinjskeVrste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,6 +269,10 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_btnPromjenaActionPerformed
 
+    private void cmbZivotinjskeVrsteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbZivotinjskeVrsteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbZivotinjskeVrsteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,6 +281,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
     private javax.swing.JButton btnPromjena;
     private javax.swing.JComboBox<Djelatnik> cmbDjelatnik;
     private javax.swing.JComboBox<Prostorija> cmbProstorija;
+    private javax.swing.JComboBox<String> cmbZivotinjskeVrste;
     private com.github.lgooddatepicker.components.DatePicker dpDD;
     private com.github.lgooddatepicker.components.DatePicker dpDR;
     private com.github.lgooddatepicker.components.DatePicker dpDS;
@@ -287,12 +301,43 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
     private javax.swing.JTextField txtMinKu;
     private javax.swing.JTextField txtMinKv;
     private javax.swing.JTextField txtVrsta;
-    private javax.swing.JTextField txtZivVrsta;
     // End of variables declaration//GEN-END:variables
 
     private void napuniView(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, Date datumR, Date datumD, Date datumS, Integer minKv, Integer minKu) {
         txtIme.setText(ime);
-        txtZivVrsta.setText(zivotinjskaVrsta);
+        DefaultComboBoxModel<String> z
+                = new DefaultComboBoxModel<>();
+        Zivotinja ziv = new Zivotinja();
+        z.addElement(zivotinjskaVrsta);
+        if(zivotinjskaVrsta.compareTo("Sisavci")!=0) {
+            z.addElement("Sisavci");
+        }
+         if(zivotinjskaVrsta.compareTo("Ptice")!=0) {
+            z.addElement("Ptice");
+        }
+         if(zivotinjskaVrsta.compareTo("Gmazovi")!=0) {
+            z.addElement("Gmazovi");
+        }
+          if(zivotinjskaVrsta.compareTo("Vodozemci")!=0) {
+            z.addElement("Vodozemci");
+        }
+           if(zivotinjskaVrsta.compareTo("Ribe")!=0) {
+            z.addElement("Ribe");
+        }
+            if(zivotinjskaVrsta.compareTo("Rakovi")!=0) {
+            z.addElement("Rakovi");
+        }
+             if(zivotinjskaVrsta.compareTo("Mekušci")!=0) {
+            z.addElement("Mekušci");
+        }
+              if(zivotinjskaVrsta.compareTo("Paučnjaci")!=0) {
+            z.addElement("Paučnjaci");
+        }
+               if(zivotinjskaVrsta.compareTo("Kukci")!=0) {
+            z.addElement("Kukci");
+        }
+        cmbZivotinjskeVrste.setModel(z);
+        cmbZivotinjskeVrste.repaint();
         txtVrsta.setText(vrsta);
         DatePickerSettings dpDolazak
                 = new DatePickerSettings(new Locale("hr", "HR"));
@@ -352,7 +397,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         obradaZ.setEntitet(promjenaZ);
         var s = obradaZ.getEntitet();
         s.setIme(txtIme.getText());
-        s.setZivotinjskaVrsta(txtZivVrsta.getText());
+        s.setZivotinjskaVrsta((String) cmbZivotinjskeVrste.getSelectedItem());
         s.setVrsta(txtVrsta.getText());
         DatePickerSettings dpDolazak
                 = new DatePickerSettings(new Locale("hr", "HR"));

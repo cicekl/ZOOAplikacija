@@ -85,8 +85,8 @@
                               <Component id="btnUnesi" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="txtZivVrsta" min="-2" pref="145" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="cmbZivotinjskaVrsta" min="-2" pref="147" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="txtVrsta" min="-2" pref="145" max="-2" attributes="0"/>
                           </Group>
@@ -116,8 +116,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtIme" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtZivVrsta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtVrsta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbZivotinjskaVrsta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -192,8 +192,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x17d;ivotinjska vrsta"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtZivVrsta">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -282,6 +280,16 @@
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Prostorija&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbZivotinjskaVrsta">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
   </SubComponents>

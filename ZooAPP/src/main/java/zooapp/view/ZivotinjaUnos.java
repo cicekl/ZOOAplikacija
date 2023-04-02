@@ -34,6 +34,7 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         obradaZ = new ObradaZivotinja();
         ucitajDjelatnike();
         ucitajProstorije();
+        ucitajZivotinjskeVrste();
     }
 
     /**
@@ -49,7 +50,6 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtIme = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtZivVrsta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtVrsta = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -68,6 +68,7 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         dpDS = new com.github.lgooddatepicker.components.DatePicker();
         cmbDjelatnik = new javax.swing.JComboBox<>();
         cmbProstorija = new javax.swing.JComboBox<>();
+        cmbZivotinjskaVrsta = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Unos nove životinje");
@@ -167,8 +168,8 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnUnesi))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(txtZivVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbZivotinjskaVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
                                 .addComponent(txtVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -189,8 +190,8 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtZivVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbZivotinjskaVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -259,6 +260,7 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
     private javax.swing.JButton btnUnesi;
     private javax.swing.JComboBox<Djelatnik> cmbDjelatnik;
     private javax.swing.JComboBox<Prostorija> cmbProstorija;
+    private javax.swing.JComboBox<String> cmbZivotinjskaVrsta;
     private com.github.lgooddatepicker.components.DatePicker dpDD;
     private com.github.lgooddatepicker.components.DatePicker dpDR;
     private com.github.lgooddatepicker.components.DatePicker dpDS;
@@ -278,13 +280,12 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
     private javax.swing.JTextField txtMinKu;
     private javax.swing.JTextField txtMinKv;
     private javax.swing.JTextField txtVrsta;
-    private javax.swing.JTextField txtZivVrsta;
     // End of variables declaration//GEN-END:variables
 
     private void napuniModel() {
         var s = obradaZ.getEntitet();
         s.setIme(txtIme.getText());
-        s.setZivotinjskaVrsta(txtZivVrsta.getText());
+        s.setZivotinjskaVrsta((String)cmbZivotinjskaVrsta.getSelectedItem());
         s.setVrsta(txtVrsta.getText());
         DatePickerSettings dpDolazak = 
         new DatePickerSettings(new Locale("hr","HR"));
@@ -355,4 +356,19 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         cmbProstorija.setModel(p);
         cmbProstorija.repaint();
     }
+
+    private void ucitajZivotinjskeVrste() {
+    DefaultComboBoxModel<String> z = new DefaultComboBoxModel<>();
+    z.addElement("Sisavci");
+    z.addElement("Ptice");
+    z.addElement("Gmazovi");
+    z.addElement("Vodozemci");
+    z.addElement("Ribe");
+    z.addElement("Rakovi");
+    z.addElement("Mekušci");
+    z.addElement("Paučnjaci");
+    z.addElement("Kukci");
+    cmbZivotinjskaVrsta.setModel(z);
+    cmbZivotinjskaVrsta.repaint();
+}     
 }
