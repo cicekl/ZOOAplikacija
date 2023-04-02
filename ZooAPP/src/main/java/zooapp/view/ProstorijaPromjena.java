@@ -4,19 +4,36 @@
  */
 package zooapp.view;
 
+import javax.swing.JOptionPane;
+import zooapp.controller.ObradaProstorija;
+import zooapp.model.Prostorija;
+import zooapp.util.ZooException;
+
 /**
  *
  * @author Lorena
  */
 public class ProstorijaPromjena extends javax.swing.JFrame {
+    
+    private ObradaProstorija obradaP;
+    private Prostorija p;
 
     /**
      * Creates new form ProstorijaPromjena
      */
     public ProstorijaPromjena() {
         initComponents();
+        obradaP = new ObradaProstorija();
+        setTitle("Prostorije");
     }
 
+     public ProstorijaPromjena(String naziv, Integer sirina, Integer duzina, Integer visina, Prostorija s) {
+        initComponents();
+        obradaP = new ObradaProstorija();
+        setTitle("Prostorije");
+        napuniView(naziv,sirina,duzina,visina);
+        p = s;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,21 +43,135 @@ public class ProstorijaPromjena extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        txtNaziv = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtSirina = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtDuzina = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtVisina = new javax.swing.JTextField();
+        btnPromjenaP = new javax.swing.JButton();
+        lblUspjeh = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Naziv");
+
+        txtNaziv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNazivActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Širina");
+
+        txtSirina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSirinaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Dužina");
+
+        jLabel4.setText("Visina");
+
+        btnPromjenaP.setBackground(new java.awt.Color(198, 225, 252));
+        btnPromjenaP.setText("Promjena");
+        btnPromjenaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPromjenaPActionPerformed(evt);
+            }
+        });
+
+        lblUspjeh.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtVisina, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtDuzina, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtSirina, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblUspjeh)
+                        .addGap(18, 18, 18)))
+                .addComponent(btnPromjenaP)
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSirina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDuzina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtVisina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPromjenaP)
+                    .addComponent(lblUspjeh))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNazivActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNazivActionPerformed
+
+    private void txtSirinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSirinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSirinaActionPerformed
+
+    private void btnPromjenaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjenaPActionPerformed
+//        obradaP.setEntitet(new Prostorija());
+//        napuniModel();
+//        try {
+//            obradaP.create();
+//            lblUspjeh.setText("Prostorija uspješno unesena!");
+//        }catch(ZooException ex) {
+//            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
+//        }
+    }//GEN-LAST:event_btnPromjenaPActionPerformed
+
+    private void napuniView(String naziv, Integer sirina, Integer duzina, Integer visina) {
+        txtNaziv.setText(naziv);
+        txtSirina.setText(sirina.toString());
+        txtDuzina.setText(duzina.toString());
+        txtVisina.setText(visina.toString());
+         try {
+            obradaP.update();
+           lblUspjeh.setText("Prostorija uspješno promijenjena!");
+        } catch (ZooException ex) {
+            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -48,5 +179,19 @@ public class ProstorijaPromjena extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPromjenaP;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblUspjeh;
+    private javax.swing.JTextField txtDuzina;
+    private javax.swing.JTextField txtNaziv;
+    private javax.swing.JTextField txtSirina;
+    private javax.swing.JTextField txtVisina;
     // End of variables declaration//GEN-END:variables
+
+    void prikazi() {
+        setVisible(true);
+    }
 }

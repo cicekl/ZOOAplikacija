@@ -29,7 +29,8 @@ import zooapp.util.ZooException;
  */
 public class ZivotinjaPromjena extends javax.swing.JFrame {
 
-    ObradaZivotinja obradaZ;
+    private ObradaZivotinja obradaZ;
+    private Zivotinja promjenaZ;
     private Integer sifra;
     
 
@@ -39,15 +40,17 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
     public ZivotinjaPromjena() {
         initComponents();
         obradaZ = new ObradaZivotinja();
+        setTitle("Životinje");
 //        ucitajDjelatnike();
 //        ucitajProstorije();
     }
 
-    public ZivotinjaPromjena(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, LocalDate datumR, LocalDate datumD, LocalDate datumS, Integer minKv, Integer minKu,Integer sifra) {
+    public ZivotinjaPromjena(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, LocalDate datumR, LocalDate datumD, LocalDate datumS, Integer minKv, Integer minKu,Zivotinja s) {
         initComponents();
         obradaZ = new ObradaZivotinja();
-        this.sifra=sifra;
+        setTitle("Životinje");
         napuniView(ime, zivotinjskaVrsta, vrsta, djelatnik, prostorija, Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), minKv, minKu);
+        promjenaZ = s;
     }
     
       
@@ -258,13 +261,13 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
 
     private void btnPromjenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjenaActionPerformed
         napuniModel();
-        try {
-            obradaZ.update();
-            //model.setElementAt(obradaZ.getEntitet(),lista.getSelectedIndex());
-            lblUspjeh.setText("Životinja uspješno promijenjena!");
-        } catch (ZooException ex) {
-            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
-        }
+//        try {
+//            obradaZ.update();
+//            //model.setElementAt(obradaZ.getEntitet(),lista.getSelectedIndex());
+//            lblUspjeh.setText("Životinja uspješno promijenjena!");
+//        } catch (ZooException ex) {
+//            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
+//        }
     }//GEN-LAST:event_btnPromjenaActionPerformed
 
     /**
@@ -297,29 +300,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
     private javax.swing.JTextField txtZivVrsta;
     // End of variables declaration//GEN-END:variables
 
-//    private void ucitajDjelatnike() {
-//        DefaultComboBoxModel<Djelatnik> d
-//                = new DefaultComboBoxModel<>();
-//        Djelatnik dj = new Djelatnik();
-//        dj.setSifra(0);
-//        dj.setIme("Nije");
-//        dj.setPrezime("odabrano");
-//        d.addElement(dj);
-//        d.addAll(new ObradaDjelatnik().read());
-//        cmbDjelatnik.setModel(d);
-//        cmbDjelatnik.repaint();
-//    }
-//    private void ucitajProstorije() {
-//         DefaultComboBoxModel<Prostorija> p
-//                = new DefaultComboBoxModel<>();
-//        Prostorija pr = new Prostorija();
-//        pr.setSifra(0);
-//        pr.setNaziv("Nije odabrano");
-//        p.addElement(pr);
-//        p.addAll(new ObradaProstorija().read());
-//        cmbProstorija.setModel(p);
-//        cmbProstorija.repaint();
-//    }
+
     private void napuniView(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, Date datumR, Date datumD, Date datumS, Integer minKv, Integer minKu) {
         txtIme.setText(ime);
         txtZivVrsta.setText(zivotinjskaVrsta);
@@ -373,10 +354,8 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
     }
 
     private void napuniModel() {
-        obradaZ.getEntitet();
-       // System.out.println(obradaZ.getEntitet().getIme());
+        obradaZ.setEntitet(promjenaZ);
         var s = obradaZ.getEntitet();
-        System.out.println(s.getIme());
         s.setIme(txtIme.getText());
         s.setZivotinjskaVrsta(txtZivVrsta.getText());
         s.setVrsta(txtVrsta.getText());
@@ -410,16 +389,22 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
                         .atZone(ZoneId.systemDefault())
                         .toInstant())
                 : null);
-        s.setDatumSmrti(dpDS.getDate() != null
-                ? Date.from(dpDS.getDate()
+        if(s.getDatumSmrti()!= null){
+                s.setDatumSmrti(Date.from(dpDS.getDate()
                         .atStartOfDay()
                         .atZone(ZoneId.systemDefault())
-                        .toInstant())
-                : null);
+                        .toInstant())); }
         s.setMinimalnaKvadratura(Integer.parseInt(txtMinKv.getText()));
         s.setMinimalnaKubikaza(Integer.parseInt(txtMinKu.getText()));
         s.setDjelatnik((Djelatnik) cmbDjelatnik.getSelectedItem());
         s.setProstorija((Prostorija) cmbProstorija.getSelectedItem());
+        
+        try {
+            obradaZ.update();
+            lblUspjeh.setText("Životinja uspješno promijenjena!");
+        } catch (ZooException ex) {
+            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
+        }
     }
 
 }

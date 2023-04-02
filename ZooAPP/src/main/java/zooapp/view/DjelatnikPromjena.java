@@ -4,17 +4,36 @@
  */
 package zooapp.view;
 
+import javax.swing.JOptionPane;
+import zooapp.controller.ObradaDjelatnik;
+import zooapp.model.Djelatnik;
+import zooapp.util.Alati;
+import zooapp.util.ZooException;
+
 /**
  *
  * @author Lorena
  */
 public class DjelatnikPromjena extends javax.swing.JFrame {
+    
+    private ObradaDjelatnik obradaD;
+    private Djelatnik d;
 
     /**
      * Creates new form DjelatnikPromjena
      */
     public DjelatnikPromjena() {
         initComponents();
+        obradaD = new ObradaDjelatnik();
+        setTitle("Djelatnici");
+    }
+
+    public DjelatnikPromjena(String ime, String prezime, String iban,Djelatnik s) {
+        initComponents();
+        obradaD = new ObradaDjelatnik();
+        setTitle("Djelatnici");
+        napuniView(ime,prezime,iban);
+        d = s;
     }
 
     /**
@@ -26,21 +45,148 @@ public class DjelatnikPromjena extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        txtI = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtP = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtIBAN = new javax.swing.JTextField();
+        btnIBAN = new javax.swing.JButton();
+        btnPromjenaD = new javax.swing.JButton();
+        lblUspjeh = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Ime");
+
+        txtI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Prezime");
+
+        txtP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\user-add-12 (1).png")); // NOI18N
+
+        jLabel3.setText("IBAN");
+
+        btnIBAN.setText("💳");
+        btnIBAN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIBANActionPerformed(evt);
+            }
+        });
+
+        btnPromjenaD.setBackground(new java.awt.Color(198, 225, 252));
+        btnPromjenaD.setText("Promjena");
+        btnPromjenaD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPromjenaDActionPerformed(evt);
+            }
+        });
+
+        lblUspjeh.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(83, 83, 83)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(29, 29, 29)
+                                        .addComponent(txtI, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(87, 87, 87)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(jLabel3)))
+                        .addGap(0, 42, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(txtIBAN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnIBAN))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblUspjeh)
+                            .addComponent(txtP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnPromjenaD, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIBAN)))
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPromjenaD)
+                    .addComponent(lblUspjeh))
+                .addGap(23, 23, 23))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIActionPerformed
+
+    private void txtPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPActionPerformed
+
+    private void btnIBANActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIBANActionPerformed
+        txtIBAN.setText(Alati.generirajIBAN());
+    }//GEN-LAST:event_btnIBANActionPerformed
+
+    private void btnPromjenaDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjenaDActionPerformed
+        napuniModel();
+//        obradaD.setEntitet(new Djelatnik());
+//        napuniModel();
+//        try {
+//            obradaD.create();
+//            lblUspjehD.setText("Djelatnik uspješno unesen!");
+//        }catch(ZooException ex) {
+//            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
+//        }
+    }//GEN-LAST:event_btnPromjenaDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -48,5 +194,40 @@ public class DjelatnikPromjena extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIBAN;
+    private javax.swing.JButton btnPromjenaD;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblUspjeh;
+    private javax.swing.JTextField txtI;
+    private javax.swing.JTextField txtIBAN;
+    private javax.swing.JTextField txtP;
     // End of variables declaration//GEN-END:variables
+
+    private void napuniModel() {
+        obradaD.setEntitet(d);
+        var s = obradaD.getEntitet();
+        s.setIme(txtI.getText());
+        s.setPrezime(txtP.getText());
+        s.setIBAN(txtIBAN.getText());
+         try {
+            obradaD.update();
+            lblUspjeh.setText("Djelatnik uspješno promijenjen!");
+        } catch (ZooException ex) {
+            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
+        }
+        
+    }
+
+    void prikazi() {
+        setVisible(true);
+    }
+
+    private void napuniView(String ime, String prezime, String iban) {
+        txtI.setText(ime);
+        txtP.setText(prezime);
+        txtIBAN.setText(iban);
+   }
 }

@@ -5,6 +5,7 @@
 package zooapp.view;
 
 import zooapp.controller.ObradaProstorija;
+import zooapp.model.Prostorija;
 
 /**
  *
@@ -13,6 +14,7 @@ import zooapp.controller.ObradaProstorija;
 public class ProstorijaPregled extends javax.swing.JFrame {
 
     private ObradaProstorija obradaP;
+    private Prostorija p;
     
     /**
      * Creates new form ProstorijaPregled
@@ -26,6 +28,7 @@ public class ProstorijaPregled extends javax.swing.JFrame {
     public ProstorijaPregled(String naziv, Integer sirina, Integer duzina, Integer visina) {
         initComponents();
         obradaP = new ObradaProstorija();
+        setTitle("Pregled prostorija");
         napuniView(naziv,sirina,duzina,visina);
     }
 

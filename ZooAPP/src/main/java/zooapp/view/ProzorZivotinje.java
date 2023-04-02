@@ -329,7 +329,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
          LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
          LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
          LocalDate dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS,s.getMinimalnaKvadratura(),s.getMinimalnaKubikaza(),lstLista.getSelectedValue().getSifra());
+         zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS,s.getMinimalnaKvadratura(),s.getMinimalnaKubikaza(),s);
          zpr.prikazi();
          
     }//GEN-LAST:event_btnIzmjenaActionPerformed
@@ -364,13 +364,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         lstLista.repaint();
     }
 
-    public JList<Zivotinja> getlstLista() {
-        return lstLista;
-    }
-
-    public void setlstLista(JList<Zivotinja> lstLista) {
-        this.lstLista = lstLista;
-    }
+    
 
 //public void updateList(String ime, String zivotinjskaVrsta, String vrsta, Date datumRodenja, Date datumDolaska, Date datumSmrti, int minimalnaKvadratura, int minimalnaKubikaza, Djelatnik djelatnik, Prostorija prostorija) {
 //    obradaZ.setEntitet(lstLista.getSelectedValue());

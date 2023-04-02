@@ -18,15 +18,21 @@ public class Prostorija extends Entitet{
     private Integer duzina;
     private String naziv;
 
-    public Integer getSirina() {
-        return sirina;
+   public Integer getSirina() {
+    if (sirina == null) {
+        return 0;
     }
+    return sirina;
+}
 
     public void setSirina(Integer sirina) {
         this.sirina = sirina;
     }
 
     public Integer getVisina() {
+        if(visina ==null) {
+            return 0;
+        }
         return visina;
     }
 
@@ -35,6 +41,9 @@ public class Prostorija extends Entitet{
     }
 
     public Integer getDuzina() {
+        if(duzina == null) {
+            return 0;
+        }
         return duzina;
     }
 

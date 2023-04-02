@@ -20,6 +20,7 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
 
     private ObradaDjelatnik obradaD;
     private DjelatnikPregled dp;
+    private DjelatnikPromjena dpr;
     /**
      * Creates new form ProzorDjelatnici
      */
@@ -38,7 +39,14 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
         setTitle("Djelatnici");
         txtPretragaD.requestFocus();
     }
-
+      
+      public ProzorDjelatnici(DjelatnikPromjena dpr) {
+        initComponents();
+        obradaD = new ObradaDjelatnik();
+        this.dpr = dpr;
+        setTitle("Djelatnici");
+        txtPretragaD.requestFocus();
+      }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,6 +119,11 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
 
         btnIzmjenaD.setBackground(new java.awt.Color(198, 225, 252));
         btnIzmjenaD.setText("Izmjena ");
+        btnIzmjenaD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzmjenaDActionPerformed(evt);
+            }
+        });
 
         btnUnosD.setBackground(new java.awt.Color(198, 225, 252));
         btnUnosD.setText("Unos");
@@ -275,6 +288,21 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnBrisanjeActionPerformed
+
+    private void btnIzmjenaDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmjenaDActionPerformed
+        if(lstListaD.getSelectedValue() == null || lstListaD.getSelectedValue().equals(null)) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenog djelatnika!","Upozorenje",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        obradaD.setEntitet(lstListaD.getSelectedValue());
+        var s = obradaD.getEntitet();
+        dpr = new DjelatnikPromjena(s.getIme(),s.getPrezime(),s.getIBAN(),s);
+        dpr.prikazi();
+        
+        
+        
+    }//GEN-LAST:event_btnIzmjenaDActionPerformed
 
     /**
      * @param args the command line arguments

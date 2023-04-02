@@ -15,7 +15,7 @@ import zooapp.util.ZooException;
  */
 public class ObradaZivotinja extends Obrada<Zivotinja>{
     
-    Prostorija p = new Prostorija();
+    private Prostorija p = new Prostorija();
 
     @Override
     public List<Zivotinja> read() {
@@ -151,11 +151,13 @@ public class ObradaZivotinja extends Obrada<Zivotinja>{
     }
 
     private void kontrolaProstorija() throws ZooException {
-        if(entitet.getMinimalnaKvadratura()> (entitet.getProstorija().getDuzina()*entitet.getProstorija().getSirina())) {
+        p = entitet.getProstorija();
+       // System.out.println(entitet.getProstorija().getVisina().toString());
+        if(entitet.getMinimalnaKvadratura()> (p.getDuzina().intValue()*p.getSirina().intValue())) {
             throw new ZooException("Prostorija ne odgovara dimenzijama kvadrature za odabranu životinju!");
         }
         
-        if(entitet.getMinimalnaKubikaza()>(entitet.getProstorija().getDuzina()*entitet.getProstorija().getSirina()*entitet.getProstorija().getVisina())){
+        if(entitet.getMinimalnaKubikaza()>(p.getDuzina().intValue()*p.getSirina().intValue()*p.getVisina().intValue())){
             throw new ZooException("Prostorija ne odgovara dimenzijama kubikaže za odabranu životinju!");
     }
     

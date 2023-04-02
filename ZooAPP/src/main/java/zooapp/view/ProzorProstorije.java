@@ -19,6 +19,7 @@ public class ProzorProstorije extends javax.swing.JFrame {
     
     private ObradaProstorija obradaP;
     private ProstorijaPregled pp;
+    private ProstorijaPromjena pr;
 
     /**
      * Creates new form ProzorProstorije
@@ -93,6 +94,11 @@ public class ProzorProstorije extends javax.swing.JFrame {
 
         btnIzmjenaP.setBackground(new java.awt.Color(198, 225, 252));
         btnIzmjenaP.setText("Izmjena ");
+        btnIzmjenaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIzmjenaPActionPerformed(evt);
+            }
+        });
 
         btnUnosP.setBackground(new java.awt.Color(198, 225, 252));
         btnUnosP.setText("Unos");
@@ -261,6 +267,19 @@ public class ProzorProstorije extends javax.swing.JFrame {
         new ProzorIzbornik().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnIzbornikActionPerformed
+
+    private void btnIzmjenaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmjenaPActionPerformed
+        if(lstListaP.getSelectedValue() == null || lstListaP.getSelectedValue().equals(null)) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenu prostoriju!","Upozorenje",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        obradaP.setEntitet(lstListaP.getSelectedValue());
+        var s = obradaP.getEntitet();
+        pr = new ProstorijaPromjena(s.getNaziv(), s.getSirina(), s.getDuzina(), s.getVisina(),s);
+        pr.prikazi();
+        
+    }//GEN-LAST:event_btnIzmjenaPActionPerformed
 
     /**
      * @param args the command line arguments
