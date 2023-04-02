@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package zooapp.model;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import java.util.Date;
@@ -22,9 +23,9 @@ public class Zivotinja extends Entitet{
     private Date datumRodenja;
     private Date datumDolaska;
     private Date datumSmrti;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Djelatnik djelatnik;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Prostorija prostorija;
 
 

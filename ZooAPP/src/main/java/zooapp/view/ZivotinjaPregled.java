@@ -54,8 +54,11 @@ public class ZivotinjaPregled extends javax.swing.JFrame {
         dpRodjenje.setSettings(dps);
         dpDolazak.setSettings(dD);
         dpSmrt.setSettings(dS);
-        
-        napuniView(ime,zivotinjskaVrsta,vrsta,djelatnik,prostorija,Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()),Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()),Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+        Date dateS = null;
+        if (datumS != null) {
+            dateS = Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+        }
+        napuniView(ime,zivotinjskaVrsta,vrsta,djelatnik,prostorija,Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()),Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()),dateS);
     }
    
     public void napuniView(String ime, String zivotinjskaVrsta,String vrsta,Djelatnik djelatnik,Prostorija prostorija,Date datumR,Date datumD,Date datumS) {
@@ -68,7 +71,11 @@ public class ZivotinjaPregled extends javax.swing.JFrame {
        lblProstorija.setText(prostorija.getNaziv().toUpperCase());
        dpRodjenje.setDate(datumR.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
        dpDolazak.setDate(datumD.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-       dpSmrt.setDate(datumS.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+      if(datumS!=null) {
+          dpSmrt.setDate(datumS.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+      }else {
+          dpSmrt.setDate(null);
+      }
     }
     
     public void prikazi() {

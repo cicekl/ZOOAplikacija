@@ -28,28 +28,28 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     private ObradaZivotinja obradaZ;
     private ZivotinjaPregled zp;
     private ZivotinjaPromjena zpr;
-    
+
     /**
      * Creates new form ProzorZivotinje
      */
     public ProzorZivotinje() {
         initComponents();
         obradaZ = new ObradaZivotinja();
-       // zp = new ZivotinjaPregled();
+        // zp = new ZivotinjaPregled();
         setTitle("Životinje");
         txtPretraga.requestFocus();
-        
+
     }
-    
-     public ProzorZivotinje(ZivotinjaPregled zp) {
+
+    public ProzorZivotinje(ZivotinjaPregled zp) {
         initComponents();
         obradaZ = new ObradaZivotinja();
         this.zp = zp;
         setTitle("Životinje");
         txtPretraga.requestFocus();
     }
-     
-      public ProzorZivotinje(ZivotinjaPromjena zpr) {
+
+    public ProzorZivotinje(ZivotinjaPromjena zpr) {
         initComponents();
         obradaZ = new ObradaZivotinja();
         this.zpr = zpr;
@@ -254,25 +254,30 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPretragaActionPerformed
 
     private void txtPretragaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPretragaKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ucitaj();
         }
     }//GEN-LAST:event_txtPretragaKeyPressed
 
     private void btnPregledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPregledActionPerformed
-        if(lstLista.getSelectedValue() == null || lstLista.getSelectedValue().equals(null)) {
-            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenu životinju!","Upozorenje",JOptionPane.INFORMATION_MESSAGE);
+        if (lstLista.getSelectedValue() == null || lstLista.getSelectedValue().equals(null)) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenu životinju!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         obradaZ.setEntitet(lstLista.getSelectedValue());
-           var s = obradaZ.getEntitet();
-          // System.out.println(s.getIme());
-         LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         LocalDate dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         zp = new ZivotinjaPregled(s.getIme(),s.getZivotinjskaVrsta(),s.getVrsta(),s.getDjelatnik(),s.getProstorija(),dR,dD,dS);
-         zp.prikazi();
-     
+        var s = obradaZ.getEntitet();
+        // System.out.println(s.getIme());
+        LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dS;
+        if (s.getDatumSmrti() != null) {
+            dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } else {
+            dS = null;
+        }
+        zp = new ZivotinjaPregled(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS);
+        zp.prikazi();
+
     }//GEN-LAST:event_btnPregledActionPerformed
 
     private void lstListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstListaValueChanged
@@ -287,25 +292,25 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_lstListaValueChanged
 
     private void btnBrisanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjeActionPerformed
-        if(lstLista.getSelectedValuesList()==null
-                || lstLista.getSelectedValuesList().isEmpty()){
+        if (lstLista.getSelectedValuesList() == null
+                || lstLista.getSelectedValuesList().isEmpty()) {
             JOptionPane.showMessageDialog(getRootPane(),
                     "Prvo odaberite životinju za brisanje!");
             return;
         }
-        
+
         obradaZ.setEntitet(lstLista.getSelectedValue());
-        
-         if(JOptionPane.showConfirmDialog(
+
+        if (JOptionPane.showConfirmDialog(
                 getRootPane(),
-                "Želite li sigurno obrisati " + obradaZ.getEntitet().getIme() + " " + "(" + obradaZ.getEntitet().getZivotinjskaVrsta() + ")"  + "?",
+                "Želite li sigurno obrisati " + obradaZ.getEntitet().getIme() + " " + "(" + obradaZ.getEntitet().getZivotinjskaVrsta() + ")" + "?",
                 "Brisanje",
                 JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
             return;
         }
-         
-         try {
+
+        try {
             obradaZ.delete();
             ucitaj();
         } catch (ZooException ex) {
@@ -313,31 +318,34 @@ public class ProzorZivotinje extends javax.swing.JFrame {
                     getRootPane(),
                     ex.getPoruka());
         }
-         
-         
-        
+
+
     }//GEN-LAST:event_btnBrisanjeActionPerformed
 
     private void btnIzmjenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzmjenaActionPerformed
-         if(lstLista.getSelectedValue() == null || lstLista.getSelectedValue().equals(null)) {
-            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenu životinju!","Upozorenje",JOptionPane.INFORMATION_MESSAGE);
+        if (lstLista.getSelectedValue() == null || lstLista.getSelectedValue().equals(null)) {
+            JOptionPane.showMessageDialog(getRootPane(), "Prvo odaberite željenu životinju!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         obradaZ.setEntitet(lstLista.getSelectedValue());
-         var s = obradaZ.getEntitet();
-          // System.out.println(s.getIme());
-         LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         LocalDate dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-         zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS,s.getMinimalnaKvadratura(),s.getMinimalnaKubikaza(),s);
-         zpr.prikazi();
-         
+        var s = obradaZ.getEntitet();
+        // System.out.println(s.getIme());
+        LocalDate dR = s.getDatumRodenja().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dD = s.getDatumDolaska().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate dS;
+        if (s.getDatumSmrti() != null) {
+            dS = s.getDatumSmrti().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        } else {
+            dS = null;
+        }
+        zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS, s.getMinimalnaKvadratura(), s.getMinimalnaKubikaza(), s);
+        zpr.prikazi();
+
     }//GEN-LAST:event_btnIzmjenaActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBrisanje;
@@ -357,14 +365,12 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void ucitaj() {
-        
+
         DefaultListModel<Zivotinja> z = new DefaultListModel<>();
         z.addAll(obradaZ.read(txtPretraga.getText()));
         lstLista.setModel(z);
         lstLista.repaint();
     }
-
-    
 
 //public void updateList(String ime, String zivotinjskaVrsta, String vrsta, Date datumRodenja, Date datumDolaska, Date datumSmrti, int minimalnaKvadratura, int minimalnaKubikaza, Djelatnik djelatnik, Prostorija prostorija) {
 //    obradaZ.setEntitet(lstLista.getSelectedValue());
@@ -386,6 +392,4 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
 //        }
 //}
-   
-    
 }
