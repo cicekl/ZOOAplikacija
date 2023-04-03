@@ -199,6 +199,7 @@ public class ProstorijaPromjena extends javax.swing.JFrame {
     private void napuniModel() {
         obradaP.setEntitet(p);
         var s = obradaP.getEntitet();
+        s.setNaziv(txtNaziv.getText());
         s.setSirina(Integer.parseInt(txtSirina.getText()));
         s.setDuzina(Integer.parseInt(txtDuzina.getText()));
         s.setVisina(Integer.parseInt(txtVisina.getText()));

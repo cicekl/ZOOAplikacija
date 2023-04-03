@@ -256,7 +256,7 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUnosDActionPerformed
 
     private void btnStatistikaDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatistikaDActionPerformed
-        // TODO add your handling code here:
+        new DjelatniciStatistika().setVisible(true);
     }//GEN-LAST:event_btnStatistikaDActionPerformed
 
     private void btnBrisanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjeActionPerformed

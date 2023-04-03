@@ -231,7 +231,7 @@ public class ProzorProstorije extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUnosPActionPerformed
 
     private void btnStatistikaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatistikaPActionPerformed
-        // TODO add your handling code here:
+        new ProstorijeStatistika().setVisible(true);
     }//GEN-LAST:event_btnStatistikaPActionPerformed
 
     private void btnBrisanjePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjePActionPerformed
