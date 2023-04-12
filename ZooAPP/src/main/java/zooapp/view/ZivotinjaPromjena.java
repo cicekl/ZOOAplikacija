@@ -18,12 +18,14 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import org.hibernate.Session;
 import zooapp.controller.ObradaDjelatnik;
 import zooapp.controller.ObradaProstorija;
 import zooapp.controller.ObradaZivotinja;
 import zooapp.model.Djelatnik;
 import zooapp.model.Prostorija;
 import zooapp.model.Zivotinja;
+import zooapp.util.HibernateUtil;
 import zooapp.util.ZooException;
 
 /**
@@ -473,10 +475,8 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         s.setMinimalnaKubikaza(Integer.parseInt(txtMinKu.getText()));
         s.setDjelatnik((Djelatnik) cmbDjelatnik.getSelectedItem());
         s.setProstorija((Prostorija) cmbProstorija.getSelectedItem());
-        System.out.println(s.getMinimalnaKvadratura());
-        System.out.println(s.getProstorija().getSirina().intValue());
-        System.out.println(s.getProstorija().getVisina());
-
+       
+        
         try {
             obradaZ.update();
             lblUspjeh.setText("Životinja uspješno promijenjena!");

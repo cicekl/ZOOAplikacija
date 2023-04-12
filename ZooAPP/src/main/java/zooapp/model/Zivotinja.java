@@ -23,9 +23,9 @@ public class Zivotinja extends Entitet{
     private Date datumRodenja;
     private Date datumDolaska;
     private Date datumSmrti;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Djelatnik djelatnik;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Prostorija prostorija;
 
 
