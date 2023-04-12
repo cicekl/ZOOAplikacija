@@ -118,6 +118,12 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
             }
         });
 
+        cmbProstorija.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbProstorijaActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Ime");
 
         jLabel8.setText("Minimalna kubikaža");
@@ -273,6 +279,10 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbZivotinjskeVrsteActionPerformed
 
+    private void cmbProstorijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbProstorijaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbProstorijaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -307,33 +317,33 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         txtIme.setText(ime);
         DefaultComboBoxModel<String> z
                 = new DefaultComboBoxModel<>();
-        Zivotinja ziv = new Zivotinja();
+        //    Zivotinja ziv = new Zivotinja();
         z.addElement(zivotinjskaVrsta);
-        if(zivotinjskaVrsta.compareTo("Sisavci")!=0) {
+        if (zivotinjskaVrsta.compareTo("Sisavci") != 0) {
             z.addElement("Sisavci");
         }
-         if(zivotinjskaVrsta.compareTo("Ptice")!=0) {
+        if (zivotinjskaVrsta.compareTo("Ptice") != 0) {
             z.addElement("Ptice");
         }
-         if(zivotinjskaVrsta.compareTo("Gmazovi")!=0) {
+        if (zivotinjskaVrsta.compareTo("Gmazovi") != 0) {
             z.addElement("Gmazovi");
         }
-          if(zivotinjskaVrsta.compareTo("Vodozemci")!=0) {
+        if (zivotinjskaVrsta.compareTo("Vodozemci") != 0) {
             z.addElement("Vodozemci");
         }
-           if(zivotinjskaVrsta.compareTo("Ribe")!=0) {
+        if (zivotinjskaVrsta.compareTo("Ribe") != 0) {
             z.addElement("Ribe");
         }
-            if(zivotinjskaVrsta.compareTo("Rakovi")!=0) {
+        if (zivotinjskaVrsta.compareTo("Rakovi") != 0) {
             z.addElement("Rakovi");
         }
-             if(zivotinjskaVrsta.compareTo("Mekušci")!=0) {
+        if (zivotinjskaVrsta.compareTo("Mekušci") != 0) {
             z.addElement("Mekušci");
         }
-              if(zivotinjskaVrsta.compareTo("Paučnjaci")!=0) {
+        if (zivotinjskaVrsta.compareTo("Paučnjaci") != 0) {
             z.addElement("Paučnjaci");
         }
-               if(zivotinjskaVrsta.compareTo("Kukci")!=0) {
+        if (zivotinjskaVrsta.compareTo("Kukci") != 0) {
             z.addElement("Kukci");
         }
         cmbZivotinjskeVrste.setModel(z);
@@ -360,7 +370,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         txtMinKv.setText(minKv.toString());
         txtMinKu.setText(minKu.toString());
         dpDR.setDate(datumR.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        dpDD.setDate(datumR.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        dpDD.setDate(datumD.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         if (datumS != null) {
             dpDS.setDate(datumS.toInstant()
                     .atZone(ZoneId.systemDefault())
@@ -375,7 +385,16 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         dj.setIme(djelatnik.getIme());
         dj.setPrezime(djelatnik.getPrezime());
         d.addElement(dj);
-        d.addAll(new ObradaDjelatnik().read());
+        List<Djelatnik> djelatnici = new ObradaDjelatnik().read();
+        for (int i = 0; i < djelatnici.size(); i++) {
+            if (!djelatnici.get(i).getIme().equals(dj.getIme()) && !djelatnici.get(i).getPrezime().equals(dj.getPrezime())) {
+                Djelatnik person = new Djelatnik();
+                person.setSifra(i);
+                person.setIme(djelatnici.get(i).getIme());
+                person.setPrezime(djelatnici.get(i).getPrezime());
+                d.addElement(person);
+            }
+        }
         cmbDjelatnik.setModel(d);
         cmbDjelatnik.repaint();
         DefaultComboBoxModel<Prostorija> p
@@ -383,8 +402,23 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         Prostorija pr = new Prostorija();
         pr.setSifra(0);
         pr.setNaziv(prostorija.getNaziv());
+        pr.setSirina(prostorija.getSirina());
+        pr.setDuzina(prostorija.getDuzina());
+        pr.setVisina(prostorija.getVisina());
         p.addElement(pr);
-        p.addAll(new ObradaProstorija().read());
+        // p.addAll(new ObradaProstorija().read());
+        List<Prostorija> prostorije = new ObradaProstorija().read();
+        for (int i = 0; i < prostorije.size(); i++) {
+            if (!prostorije.get(i).getNaziv().equals(prostorija.getNaziv())) {
+                Prostorija room = new Prostorija();
+                room.setSifra(i);
+                room.setNaziv(prostorije.get(i).getNaziv());
+                room.setSirina(prostorije.get(i).getSirina());
+                room.setDuzina(prostorije.get(i).getDuzina());
+                room.setVisina(prostorije.get(i).getVisina());
+                p.addElement(room);
+            }
+        }
         cmbProstorija.setModel(p);
         cmbProstorija.repaint();
     }
@@ -439,6 +473,9 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         s.setMinimalnaKubikaza(Integer.parseInt(txtMinKu.getText()));
         s.setDjelatnik((Djelatnik) cmbDjelatnik.getSelectedItem());
         s.setProstorija((Prostorija) cmbProstorija.getSelectedItem());
+        System.out.println(s.getMinimalnaKvadratura());
+        System.out.println(s.getProstorija().getSirina().intValue());
+        System.out.println(s.getProstorija().getVisina());
 
         try {
             obradaZ.update();
