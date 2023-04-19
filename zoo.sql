@@ -28,7 +28,7 @@ CREATE TABLE `djelatnik` (
   `ime` varchar(255) DEFAULT NULL,
   `prezime` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`sifra`)
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `djelatnik` (
 
 LOCK TABLES `djelatnik` WRITE;
 /*!40000 ALTER TABLE `djelatnik` DISABLE KEYS */;
-INSERT INTO `djelatnik` VALUES (32,'VG21PWYV1554613761118083','Carey','Heller'),(33,'KZ91974EUZ3MOWyFu6U0','Marvin','Feeney'),(36,'GR106400476J3K3pcTAGNH7l3j6','Kecia','Aufderhar'),(37,'MR2816084913664094791320564','Valerie','Weimann'),(38,'HR0333172662194537516','Otto','Brekke'),(39,'CY436304268238z0sW893066D3b3','Maximina','Carter'),(40,'ES6610454763867657772227','Vincent','Aufderhar'),(42,'HR0850166092509251464','Miki','Biki'),(44,'HR0576349212539874808','Ivan','Ivanković'),(48,'HR0650022506528554198','Shae','Glover'),(57,'HR0309017514137991504','Korina','Price'),(59,'HR0067084749701356684','Christia','Kol'),(60,'HR0357494355610432038','Rudolf','Feeney'),(61,NULL,'Samira','Price'),(62,'HR0515731137722619134','Dražen','Zečić'),(63,'HR0991241921083673782','Halid','Bešlić'),(64,'HR0363640387139863613','Jasmin','Stavros'),(67,'HR0514746742775996755','Tinki','Vinki'),(69,'HR0309714148793297916','Eduarda','Josif'),(71,NULL,'Samira','Price'),(72,NULL,'Rudolf','Feeney'),(76,NULL,'Otto','Brekke');
+INSERT INTO `djelatnik` VALUES (32,'VG21PWYV1554613761118083','Carey','Heller'),(33,'KZ91974EUZ3MOWyFu6U0','Marvin','Feeney'),(36,'GR106400476J3K3pcTAGNH7l3j6','Kecia','Aufderhar'),(37,'MR2816084913664094791320564','Valerie','Weimann'),(38,'HR0333172662194537516','Otto','Brekke'),(39,'CY436304268238z0sW893066D3b3','Maximina','Carter'),(40,'ES6610454763867657772227','Vincent','Aufderhar'),(42,'HR0850166092509251464','Miki','Biki'),(44,'HR0576349212539874808','Ivan','Ivanković'),(48,'HR0650022506528554198','Shae','Glover'),(57,'HR0309017514137991504','Korina','Price'),(59,'HR0067084749701356684','Christia','Kol'),(62,'HR0515731137722619134','Dražen','Zečić'),(63,'HR0991241921083673782','Halid','Bešlić'),(64,'HR0468982546054241220','Jasmin','Stavros'),(67,'HR0514746742775996755','Tinki','Vinki'),(69,'HR0309714148793297916','Eduarda','Josif'),(71,NULL,'Samira','Price'),(72,NULL,'Rudolf','Feeney'),(77,NULL,'Dražen','Zečić'),(78,NULL,'Dražen','Zečić'),(79,NULL,'Eduarda','Josif'),(80,NULL,'Eduarda','Josif'),(81,NULL,'Dražen','Zečić'),(82,NULL,'Christia','Kol'),(83,NULL,'Dražen','Zečić'),(84,NULL,'Carey','Heller');
 /*!40000 ALTER TABLE `djelatnik` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +83,7 @@ CREATE TABLE `prostorija` (
   `sirina` int(11) DEFAULT NULL,
   `visina` int(11) DEFAULT NULL,
   PRIMARY KEY (`sifra`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `prostorija` (
 
 LOCK TABLES `prostorija` WRITE;
 /*!40000 ALTER TABLE `prostorija` DISABLE KEYS */;
-INSERT INTO `prostorija` VALUES (31,529,'Za ribe',179,792),(32,160,'Za paučnjake',434,1766),(34,551,'Za kukce',449,574),(36,730,'Za gmazove',183,2151),(43,4919,'Za sisavce',1297,94),(44,120,'Za vodozemce',120,120),(46,574,'Za mekušce',864,151),(47,551,'Za kukce',449,574),(48,730,'Za gmazove',183,2151),(51,120,'Za ptice',120,120),(52,120,'Za ptice',120,120);
+INSERT INTO `prostorija` VALUES (31,529,'Za ribe',179,792),(32,160,'Za paučnjake',434,1766),(34,551,'Za kukce',449,574),(36,730,'Za gmazove',184,2151),(43,4919,'Za sisavce',1297,94),(44,120,'Za vodozemce',120,120),(46,574,'Za mekušce',864,151),(47,551,'Za kukce',449,574),(48,730,'Za gmazove',183,2151),(51,120,'Za ptice',120,120),(52,120,'Za ptice',120,120),(53,574,'Za mekušce',864,151),(54,120,'Za ptice',120,120),(55,160,'Za paučnjake',434,1766),(56,529,'Za ribe',179,792),(57,120,'Za vodozemce',120,120),(58,4919,'Za sisavce',1297,94),(59,120,'Za vodozemce',120,120),(60,120,'Za vodozemce',120,120);
 /*!40000 ALTER TABLE `prostorija` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +120,7 @@ CREATE TABLE `zivotinja` (
   KEY `FKst9uer663v1sb4noirvmq5afu` (`prostorija_sifra`),
   CONSTRAINT `FKbprvoqqhtoky779rmoya8yktb` FOREIGN KEY (`djelatnik_sifra`) REFERENCES `djelatnik` (`sifra`),
   CONSTRAINT `FKst9uer663v1sb4noirvmq5afu` FOREIGN KEY (`prostorija_sifra`) REFERENCES `prostorija` (`sifra`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +129,7 @@ CREATE TABLE `zivotinja` (
 
 LOCK TABLES `zivotinja` WRITE;
 /*!40000 ALTER TABLE `zivotinja` DISABLE KEYS */;
-INSERT INTO `zivotinja` VALUES (50,'1972-12-04 00:00:00.000000','1972-12-04 00:00:00.000000','1992-02-29 00:00:00.000000','Sivka',6877,1324,'Siva vjeverica','Sisavci',71,47),(52,'2023-04-01 00:00:00.000000','2023-04-01 00:00:00.000000',NULL,'Čoki',42,42342,'Kanarinac','Paučnjaci',67,31),(54,'2023-04-01 00:00:00.000000','2023-04-01 00:00:00.000000',NULL,'Nemo',353,5435,'Ribica','Ribe',72,48),(59,'2023-02-08 00:00:00.000000','2016-04-08 00:00:00.000000',NULL,'Krabba',323,1230,'Smeđi rak','Rakovi',33,34),(60,'2023-04-03 00:00:00.000000','2012-07-13 00:00:00.000000',NULL,'Žabica',1728000,14400,'Crna žaba','Vodozemci',62,44),(61,'2023-02-03 00:00:00.000000','2014-04-11 00:00:00.000000',NULL,'Fiki',1728000,14400,'Žaba','Vodozemci',62,44),(62,'2016-07-16 00:00:00.000000','2012-07-21 00:00:00.000000',NULL,'Žarko',8,4,'Puž','Mekušci',62,46),(63,'2023-01-13 00:00:00.000000','2013-10-17 00:00:00.000000',NULL,'Rotkvica',100,10,'Dodo','Ptice',76,52),(64,'2020-04-10 00:00:00.000000','2019-03-13 00:00:00.000000',NULL,'Šaki',100,10,'Šaran','Ribe',69,31);
+INSERT INTO `zivotinja` VALUES (50,'1972-12-04 00:00:00.000000','1972-12-04 00:00:00.000000','1992-02-29 00:00:00.000000','Sivka',6877,1324,'Siva vjeverica','Sisavci',71,47),(52,'2023-04-01 00:00:00.000000','2023-04-01 00:00:00.000000',NULL,'Čoki',42,42342,'Kanarinac','Paučnjaci',79,55),(54,'2023-04-01 00:00:00.000000','2023-04-01 00:00:00.000000',NULL,'Nemo',353,5435,'Ribica','Ribe',72,48),(59,'2023-02-08 00:00:00.000000','2016-04-08 00:00:00.000000',NULL,'Krabba',323,1230,'Smeđi rak','Rakovi',33,34),(60,'2023-04-03 00:00:00.000000','2012-07-13 00:00:00.000000',NULL,'Žabi',1728000,14400,'Crna žaba','Vodozemci',84,60),(61,'2023-02-03 00:00:00.000000','2014-04-11 00:00:00.000000',NULL,'Fiki',1728000,14400,'Žaba','Vodozemci',81,57),(62,'2016-07-16 00:00:00.000000','2012-07-21 00:00:00.000000',NULL,'Žarko',8,4,'Lignja','Mekušci',77,53),(63,'2023-01-13 00:00:00.000000','2013-10-17 00:00:00.000000',NULL,'Rotkvica',100,10,'Dodo','Ptice',78,54),(64,'2020-04-10 00:00:00.000000','2019-03-13 00:00:00.000000',NULL,'Šaki',100,10,'Šaran','Ribe',80,56),(65,'2015-04-09 00:00:00.000000','2015-02-06 00:00:00.000000',NULL,'Slavko',80,40,'Puž vinogradnjak','Mekušci',38,46),(66,'2022-08-03 00:00:00.000000','2020-12-10 00:00:00.000000',NULL,'Rosa',16,2,'Sipa','Mekušci',39,46),(67,'2023-04-17 00:00:00.000000','2018-08-10 00:00:00.000000',NULL,'Gogo',100,10,'Golub','Ptice',64,52),(68,'2023-02-10 00:00:00.000000','2023-01-07 00:00:00.000000',NULL,'Saška',8,2,'Štuka','Vodozemci',32,44),(69,'2022-12-23 00:00:00.000000','2022-09-24 00:00:00.000000',NULL,'Talon',150,47,'Pesek','Sisavci',82,58);
 /*!40000 ALTER TABLE `zivotinja` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,4 +146,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-12 13:31:51
+-- Dump completed on 2023-04-19 15:37:47

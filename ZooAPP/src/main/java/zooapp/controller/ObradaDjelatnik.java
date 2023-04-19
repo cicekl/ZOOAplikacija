@@ -43,7 +43,7 @@ public class ObradaDjelatnik extends Obrada<Djelatnik>{
 
     @Override
     protected void kontrolaPromjena() throws ZooException {
-         kontrolaPopunjenaPolja();
+        kontrolaPopunjenaPolja();
         kontrolaIme();
         kontrolaPrezime();
         kontrolaIBAN();
