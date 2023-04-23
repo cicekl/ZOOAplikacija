@@ -45,15 +45,15 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
      */
     public ZivotinjaPromjena() {
         initComponents();
-        obradaZ = new ObradaZivotinja();
+       // obradaZ = new ObradaZivotinja();
         setTitle("Životinje");
 //        ucitajDjelatnike();
 //        ucitajProstorije();
     }
+    
 
-    public ZivotinjaPromjena(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, LocalDate datumR, LocalDate datumD, LocalDate datumS, Integer minKv, Integer minKu, Zivotinja s) {
+    public ZivotinjaPromjena(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, LocalDate datumR, LocalDate datumD, LocalDate datumS, Integer minKv, Integer minKu, Zivotinja s,ObradaZivotinja oz) {
         initComponents();
-        obradaZ = new ObradaZivotinja();
         od = new ObradaDjelatnik();
         op = new ObradaProstorija();
         setTitle("Životinje");
@@ -64,6 +64,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         napuniView(ime, zivotinjskaVrsta, vrsta, djelatnik, prostorija, Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), dateS, minKv, minKu);
         //napuniView(ime, zivotinjskaVrsta, vrsta, djelatnik, prostorija, Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), minKv, minKu);
         promjenaZ = s;
+        obradaZ = oz;
     }
 
     /**

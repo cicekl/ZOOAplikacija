@@ -25,16 +25,17 @@ import zooapp.util.ZooException;
  */
 public class ProzorZivotinje extends javax.swing.JFrame {
 
-    private ObradaZivotinja obradaZ;
+    private ObradaZivotinja obradaZ = new ObradaZivotinja();
     private ZivotinjaPregled zp;
     private ZivotinjaPromjena zpr;
+    
 
     /**
      * Creates new form ProzorZivotinje
      */
     public ProzorZivotinje() {
         initComponents();
-        obradaZ = new ObradaZivotinja();
+       // obradaZ = new ObradaZivotinja();
         // zp = new ZivotinjaPregled();
         setTitle("Životinje");
         txtPretraga.requestFocus();
@@ -43,7 +44,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 
     public ProzorZivotinje(ZivotinjaPregled zp) {
         initComponents();
-        obradaZ = new ObradaZivotinja();
+       // obradaZ = new ObradaZivotinja();
         this.zp = zp;
         setTitle("Životinje");
         txtPretraga.requestFocus();
@@ -51,7 +52,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 
     public ProzorZivotinje(ZivotinjaPromjena zpr) {
         initComponents();
-        obradaZ = new ObradaZivotinja();
+      //  obradaZ = new ObradaZivotinja();
         this.zpr = zpr;
         setTitle("Životinje");
         txtPretraga.requestFocus();
@@ -242,7 +243,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPretragaActionPerformed
 
     private void btnUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosActionPerformed
-        new ZivotinjaUnos().setVisible(true);
+        new ZivotinjaUnos(getObradaZ()).setVisible(true);
     }//GEN-LAST:event_btnUnosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -281,14 +282,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPregledActionPerformed
 
     private void lstListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstListaValueChanged
-//       if(!evt.getValueIsAdjusting()) {
-//           obradaZ.setEntitet(lstLista.getSelectedValue());
-//           var s = obradaZ.getEntitet();
-//          // System.out.println(s.getIme());
-//           zp = new ZivotinjaPregled(s.getIme());
-//           zp.prikazi();
-//           
-//       }
+        obradaZ.setEntitet(lstLista.getSelectedValue());
     }//GEN-LAST:event_lstListaValueChanged
 
     private void btnBrisanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjeActionPerformed
@@ -338,7 +332,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         } else {
             dS = null;
         }
-        zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS, s.getMinimalnaKvadratura(), s.getMinimalnaKubikaza(), s);
+        zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS, s.getMinimalnaKvadratura(), s.getMinimalnaKubikaza(), s,getObradaZ());
         zpr.prikazi();
 
     }//GEN-LAST:event_btnIzmjenaActionPerformed
@@ -371,6 +365,8 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         lstLista.setModel(z);
         lstLista.repaint();
     }
+    
+    
 
 //public void updateList(String ime, String zivotinjskaVrsta, String vrsta, Date datumRodenja, Date datumDolaska, Date datumSmrti, int minimalnaKvadratura, int minimalnaKubikaza, Djelatnik djelatnik, Prostorija prostorija) {
 //    obradaZ.setEntitet(lstLista.getSelectedValue());
@@ -392,4 +388,8 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 //            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
 //        }
 //}
+
+    public ObradaZivotinja getObradaZ() {
+        return obradaZ;
+    }
 }

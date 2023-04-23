@@ -29,9 +29,9 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
     /**
      * Creates new form ZivotinjaUnos
      */
-    public ZivotinjaUnos() {
+    public ZivotinjaUnos(ObradaZivotinja oz) {
         initComponents();
-        obradaZ = new ObradaZivotinja();
+        obradaZ = oz;
         ucitajDjelatnike();
         ucitajProstorije();
         ucitajZivotinjskeVrste();
@@ -371,4 +371,10 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
     cmbZivotinjskaVrsta.setModel(z);
     cmbZivotinjskaVrsta.repaint();
 }     
+
+    public ObradaZivotinja getObradaZ() {
+        return obradaZ;
+    }
+    
+    
 }
