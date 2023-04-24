@@ -163,10 +163,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnViseInfo">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Vi&#x161;e informacija"/>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fc" green="e1" red="c6" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Vi&#x161;e informacija"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViseInfoActionPerformed"/>
@@ -220,7 +220,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\Lorena\Downloads\ziv.png"/>
+          <Image iconType="3" name="/ziv.png"/>
         </Property>
       </Properties>
     </Component>

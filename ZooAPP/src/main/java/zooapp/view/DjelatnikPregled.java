@@ -47,7 +47,7 @@ public class DjelatnikPregled extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\djelatnik.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/djelatnik.png"))); // NOI18N
 
         jLabel2.setText("IME:");
 

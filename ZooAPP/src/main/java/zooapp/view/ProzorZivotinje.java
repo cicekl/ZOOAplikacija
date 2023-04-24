@@ -35,8 +35,9 @@ public class ProzorZivotinje extends javax.swing.JFrame {
      */
     public ProzorZivotinje() {
         initComponents();
-       // obradaZ = new ObradaZivotinja();
+        obradaZ = new ObradaZivotinja();
         // zp = new ZivotinjaPregled();
+      //  obradaZ.setEntitet(lstLista.getSelectedValue());
         setTitle("Životinje");
         txtPretraga.requestFocus();
 
@@ -243,7 +244,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPretragaActionPerformed
 
     private void btnUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosActionPerformed
-        new ZivotinjaUnos(getObradaZ()).setVisible(true);
+    new ZivotinjaUnos(getObradaZ()).setVisible(true);
     }//GEN-LAST:event_btnUnosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -282,7 +283,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPregledActionPerformed
 
     private void lstListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstListaValueChanged
-        obradaZ.setEntitet(lstLista.getSelectedValue());
+       
     }//GEN-LAST:event_lstListaValueChanged
 
     private void btnBrisanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjeActionPerformed

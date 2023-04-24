@@ -87,7 +87,7 @@ public class ProstorijaPromjena extends javax.swing.JFrame {
 
         lblUspjeh.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\prostorija-removebg-preview (1).png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prostorija-removebg-preview (1).png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

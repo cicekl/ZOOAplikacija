@@ -101,7 +101,7 @@ public class ProzorLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\dog-and-cat-paw-prints-collection-paw-icon-set-black-icon-free-vector-removebg-preview.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/izbornik.png"))); // NOI18N
 
         btnPrijava.setBackground(new java.awt.Color(198, 225, 252));
         btnPrijava.setText("Prijava");

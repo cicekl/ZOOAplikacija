@@ -74,7 +74,7 @@ public class DjelatnikPromjena extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\user-add-12 (1).png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user-add-12 (1).png"))); // NOI18N
 
         jLabel3.setText("IBAN");
 
@@ -116,7 +116,7 @@ public class DjelatnikPromjena extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(162, 162, 162)
                                 .addComponent(jLabel3)))
-                        .addGap(0, 42, Short.MAX_VALUE))
+                        .addGap(0, 23, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(txtIBAN)
@@ -153,7 +153,7 @@ public class DjelatnikPromjena extends javax.swing.JFrame {
                             .addComponent(txtIBAN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnIBAN)))
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPromjenaD)
                     .addComponent(lblUspjeh))

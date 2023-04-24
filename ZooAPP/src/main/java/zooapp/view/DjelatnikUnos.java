@@ -84,7 +84,7 @@ public class DjelatnikUnos extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lorena\\Downloads\\user-add-12 (1).png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user-add-12 (1).png"))); // NOI18N
 
         lblUspjehD.setFont(new java.awt.Font("Sitka Display", 3, 14)); // NOI18N
 
@@ -93,7 +93,7 @@ public class DjelatnikUnos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
@@ -118,7 +118,7 @@ public class DjelatnikUnos extends javax.swing.JFrame {
                         .addComponent(btnIBAN)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblUspjehD)
