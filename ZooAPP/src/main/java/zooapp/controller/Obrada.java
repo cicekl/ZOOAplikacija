@@ -36,6 +36,15 @@ public abstract class Obrada<T extends Entitet> {
         return entitet;
     }
 
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+    
+
     public void setEntitet(T entitet) {
         this.entitet = entitet;
     }

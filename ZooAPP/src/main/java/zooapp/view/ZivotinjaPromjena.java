@@ -5,27 +5,18 @@
 package zooapp.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
-import java.awt.Frame;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import org.hibernate.Session;
 import zooapp.controller.ObradaDjelatnik;
 import zooapp.controller.ObradaProstorija;
 import zooapp.controller.ObradaZivotinja;
 import zooapp.model.Djelatnik;
 import zooapp.model.Prostorija;
 import zooapp.model.Zivotinja;
-import zooapp.util.HibernateUtil;
 import zooapp.util.ZooException;
 
 /**
@@ -36,9 +27,6 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
 
     private ObradaZivotinja obradaZ;
     private Zivotinja promjenaZ;
-    private Integer sifra;
-    private ObradaDjelatnik od;
-    private ObradaProstorija op;
 
     /**
      * Creates new form ZivotinjaPromjena
@@ -46,27 +34,24 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
     public ZivotinjaPromjena() {
         super();
         initComponents();
-       // obradaZ = new ObradaZivotinja();
+        // obradaZ = new ObradaZivotinja();
         setTitle("Životinje");
 //        ucitajDjelatnike();
 //        ucitajProstorije();
-      //  obradaZ = ZivotinjaUnos.getObradaZ();
+        //  obradaZ = ZivotinjaUnos.getObradaZ();
     }
-    
 
-    public ZivotinjaPromjena(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, LocalDate datumR, LocalDate datumD, LocalDate datumS, Integer minKv, Integer minKu, Zivotinja s,ObradaZivotinja oz) {
+    public ZivotinjaPromjena(LocalDate datumR, LocalDate datumD, LocalDate datumS,Zivotinja s, ObradaZivotinja oz) {
         initComponents();
-        od = new ObradaDjelatnik();
-        op = new ObradaProstorija();
         setTitle("Životinje");
         Date dateS = null;
         if (datumS != null) {
             dateS = Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
         }
-        napuniView(ime, zivotinjskaVrsta, vrsta, djelatnik, prostorija, Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), dateS, minKv, minKu);
-        //napuniView(ime, zivotinjskaVrsta, vrsta, djelatnik, prostorija, Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), minKv, minKu);
         promjenaZ = s;
         obradaZ = oz;
+        napuniView(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija()   , Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), dateS, s.getMinimalnaKvadratura(), s.getMinimalnaKvadratura());
+        //napuniView(ime, zivotinjskaVrsta, vrsta, djelatnik, prostorija, Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), minKv, minKu);
     }
 
     /**
@@ -277,13 +262,6 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
 
     private void btnPromjenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjenaActionPerformed
         napuniModel();
-//        try {
-//            obradaZ.update();
-//            //model.setElementAt(obradaZ.getEntitet(),lista.getSelectedIndex());
-//            lblUspjeh.setText("Životinja uspješno promijenjena!");
-//        } catch (ZooException ex) {
-//            JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
-//        }
     }//GEN-LAST:event_btnPromjenaActionPerformed
 
     private void cmbZivotinjskeVrsteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbZivotinjskeVrsteActionPerformed
@@ -326,39 +304,10 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
 
     private void napuniView(String ime, String zivotinjskaVrsta, String vrsta, Djelatnik djelatnik, Prostorija prostorija, Date datumR, Date datumD, Date datumS, Integer minKv, Integer minKu) {
         txtIme.setText(ime);
-        DefaultComboBoxModel<String> z
-                = new DefaultComboBoxModel<>();
-        //    Zivotinja ziv = new Zivotinja();
-        z.addElement(zivotinjskaVrsta);
-        if (zivotinjskaVrsta.compareTo("Sisavci") != 0) {
-            z.addElement("Sisavci");
-        }
-        if (zivotinjskaVrsta.compareTo("Ptice") != 0) {
-            z.addElement("Ptice");
-        }
-        if (zivotinjskaVrsta.compareTo("Gmazovi") != 0) {
-            z.addElement("Gmazovi");
-        }
-        if (zivotinjskaVrsta.compareTo("Vodozemci") != 0) {
-            z.addElement("Vodozemci");
-        }
-        if (zivotinjskaVrsta.compareTo("Ribe") != 0) {
-            z.addElement("Ribe");
-        }
-        if (zivotinjskaVrsta.compareTo("Rakovi") != 0) {
-            z.addElement("Rakovi");
-        }
-        if (zivotinjskaVrsta.compareTo("Mekušci") != 0) {
-            z.addElement("Mekušci");
-        }
-        if (zivotinjskaVrsta.compareTo("Paučnjaci") != 0) {
-            z.addElement("Paučnjaci");
-        }
-        if (zivotinjskaVrsta.compareTo("Kukci") != 0) {
-            z.addElement("Kukci");
-        }
-        cmbZivotinjskeVrste.setModel(z);
-        cmbZivotinjskeVrste.repaint();
+        ucitajDjelatnike();
+        ucitajProstorije();
+        ucitajZivVrste();
+        cmbZivotinjskeVrste.setSelectedItem(zivotinjskaVrsta);
         txtVrsta.setText(vrsta);
         DatePickerSettings dpDolazak
                 = new DatePickerSettings(new Locale("hr", "HR"));
@@ -389,49 +338,8 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         } else {
             dpDS.setDate(null);
         }
-        DefaultComboBoxModel<Djelatnik> d
-                = new DefaultComboBoxModel<>();
-        Djelatnik dj = new Djelatnik();
-        dj.setSifra(0);
-        dj.setIme(djelatnik.getIme());
-        dj.setPrezime(djelatnik.getPrezime());
-        d.addElement(dj);
-        List<Djelatnik> djelatnici = new ObradaDjelatnik().read();
-        for (int i = 0; i < djelatnici.size(); i++) {
-            if (!djelatnici.get(i).getIme().equals(dj.getIme()) && !djelatnici.get(i).getPrezime().equals(dj.getPrezime())) {
-                Djelatnik person = new Djelatnik();
-                person.setSifra(i);
-                person.setIme(djelatnici.get(i).getIme());
-                person.setPrezime(djelatnici.get(i).getPrezime());
-                d.addElement(person);
-            }
-        }
-        cmbDjelatnik.setModel(d);
-        cmbDjelatnik.repaint();
-        DefaultComboBoxModel<Prostorija> p
-                = new DefaultComboBoxModel<>();
-        Prostorija pr = new Prostorija();
-        pr.setSifra(0);
-        pr.setNaziv(prostorija.getNaziv());
-        pr.setSirina(prostorija.getSirina());
-        pr.setDuzina(prostorija.getDuzina());
-        pr.setVisina(prostorija.getVisina());
-        p.addElement(pr);
-        // p.addAll(new ObradaProstorija().read());
-        List<Prostorija> prostorije = new ObradaProstorija().read();
-        for (int i = 0; i < prostorije.size(); i++) {
-            if (!prostorije.get(i).getNaziv().equals(prostorija.getNaziv())) {
-                Prostorija room = new Prostorija();
-                room.setSifra(i);
-                room.setNaziv(prostorije.get(i).getNaziv());
-                room.setSirina(prostorije.get(i).getSirina());
-                room.setDuzina(prostorije.get(i).getDuzina());
-                room.setVisina(prostorije.get(i).getVisina());
-                p.addElement(room);
-            }
-        }
-        cmbProstorija.setModel(p);
-        cmbProstorija.repaint();
+        cmbDjelatnik.setSelectedItem(djelatnik);
+        cmbProstorija.setSelectedItem(prostorija);
     }
 
     public void prikazi() {
@@ -482,16 +390,62 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
                 : null);
         s.setMinimalnaKvadratura(Integer.parseInt(txtMinKv.getText()));
         s.setMinimalnaKubikaza(Integer.parseInt(txtMinKu.getText()));
+        // Djelatnik sDjelatnik = (Djelatnik) cmbDjelatnik.getSelectedItem();
+        // System.out.println(sDjelatnik.getSifra());
         s.setDjelatnik((Djelatnik) cmbDjelatnik.getSelectedItem());
+        //  Prostorija sProstorija = (Prostorija) cmbProstorija.getSelectedItem();
+        //  System.out.println(sProstorija.getSifra());
         s.setProstorija((Prostorija) cmbProstorija.getSelectedItem());
-       
-        
+        // s.setDjelatnik(sDjelatnik);
+        // s.setProstorija(sProstorija);
+
         try {
             obradaZ.update();
             lblUspjeh.setText("Životinja uspješno promijenjena!");
         } catch (ZooException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
         }
+    }
+
+    private void ucitajDjelatnike() {
+        DefaultComboBoxModel<Djelatnik> d
+                = new DefaultComboBoxModel<>();
+        Djelatnik dj = new Djelatnik();
+        dj.setSifra(0);
+        dj.setIme("Nije ");
+        dj.setPrezime("odabrano");
+        d.addElement(dj);
+        d.addAll(new ObradaDjelatnik().read());
+        cmbDjelatnik.setModel(d);
+        cmbDjelatnik.repaint();
+    }
+
+    private void ucitajProstorije() {
+        DefaultComboBoxModel<Prostorija> p
+                = new DefaultComboBoxModel<>();
+        Prostorija pr = new Prostorija();
+        pr.setSifra(0);
+        pr.setNaziv("Nije odabrano");
+        p.addElement(pr);
+        p.addAll(new ObradaProstorija().read());
+        cmbProstorija.setModel(p);
+        cmbProstorija.repaint();
+    }
+
+    private void ucitajZivVrste() {
+        DefaultComboBoxModel<String> z
+                = new DefaultComboBoxModel<>();
+        z.addElement("Sisavci");
+        z.addElement("Ptice");
+        z.addElement("Gmazovi");
+        z.addElement("Vodozemci");
+        z.addElement("Ribe");
+        z.addElement("Rakovi");
+        z.addElement("Mekušci");
+        z.addElement("Paučnjaci");
+        z.addElement("Kukci");
+        cmbZivotinjskeVrste.setModel(z);
+        cmbZivotinjskeVrste.repaint();
     }
 
 }

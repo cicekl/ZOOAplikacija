@@ -51,7 +51,7 @@ public class Djelatnik extends Entitet {
         this.prezime = prezime;
         this.IBAN = IBAN;
     }
-
+    
     @Override
     public String toString() {
         return ime + " " + prezime;

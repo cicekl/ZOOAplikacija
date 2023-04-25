@@ -205,14 +205,12 @@ public class ProzorProstorije extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPretragaPActionPerformed
 
     private void lstListaPValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstListaPValueChanged
-        //       if(!evt.getValueIsAdjusting()) {
-            //           obradaZ.setEntitet(lstLista.getSelectedValue());
-            //           var s = obradaZ.getEntitet();
-            //          // System.out.println(s.getIme());
-            //           zp = new ZivotinjaPregled(s.getIme());
-            //           zp.prikazi();
-            //
-            //       }
+         if(evt.getValueIsAdjusting()){
+            return;
+        }
+        if(lstListaP.getSelectedValue()==null){
+            return;
+        }
     }//GEN-LAST:event_lstListaPValueChanged
 
     private void btnPregledPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPregledPActionPerformed

@@ -4,18 +4,12 @@
  */
 package zooapp.view;
 
-import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.Locale;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaZivotinja;
-import zooapp.model.Djelatnik;
-import zooapp.model.Prostorija;
 import zooapp.model.Zivotinja;
 import zooapp.util.ZooException;
 
@@ -24,8 +18,7 @@ import zooapp.util.ZooException;
  * @author Lorena
  */
 public class ProzorZivotinje extends javax.swing.JFrame {
-
-    private ObradaZivotinja obradaZ = new ObradaZivotinja();
+    private final ObradaZivotinja obradaZ = new ObradaZivotinja();
     private ZivotinjaPregled zp;
     private ZivotinjaPromjena zpr;
     
@@ -35,7 +28,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
      */
     public ProzorZivotinje() {
         initComponents();
-        obradaZ = new ObradaZivotinja();
+        //obradaZ = new ObradaZivotinja();
         // zp = new ZivotinjaPregled();
       //  obradaZ.setEntitet(lstLista.getSelectedValue());
         setTitle("Životinje");
@@ -283,7 +276,12 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPregledActionPerformed
 
     private void lstListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstListaValueChanged
-       
+         if(evt.getValueIsAdjusting()){
+            return;
+        }
+        if(lstLista.getSelectedValue()==null){
+            return;
+        }
     }//GEN-LAST:event_lstListaValueChanged
 
     private void btnBrisanjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrisanjeActionPerformed
@@ -333,7 +331,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         } else {
             dS = null;
         }
-        zpr = new ZivotinjaPromjena(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija(), dR, dD, dS, s.getMinimalnaKvadratura(), s.getMinimalnaKubikaza(), s,getObradaZ());
+        zpr = new ZivotinjaPromjena(dR, dD, dS, s ,getObradaZ());
         zpr.prikazi();
 
     }//GEN-LAST:event_btnIzmjenaActionPerformed

@@ -222,14 +222,12 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPretragaDActionPerformed
 
     private void lstListaDValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstListaDValueChanged
-        //       if(!evt.getValueIsAdjusting()) {
-            //           obradaZ.setEntitet(lstLista.getSelectedValue());
-            //           var s = obradaZ.getEntitet();
-            //          // System.out.println(s.getIme());
-            //           zp = new ZivotinjaPregled(s.getIme());
-            //           zp.prikazi();
-            //
-            //       }
+         if(evt.getValueIsAdjusting()){
+            return;
+        }
+        if(lstListaD.getSelectedValue()==null){
+            return;
+        }
     }//GEN-LAST:event_lstListaDValueChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
