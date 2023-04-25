@@ -4,6 +4,7 @@
  */
 package zooapp.view;
 
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaDjelatnik;
 import zooapp.model.Djelatnik;
@@ -17,14 +18,16 @@ import zooapp.util.ZooException;
 public class DjelatnikUnos extends javax.swing.JFrame {
 
     private ObradaDjelatnik obradaD;
+    private JList<Djelatnik> lista;
     
     /**
      * Creates new form DjelatnikUnos
      */
-    public DjelatnikUnos() {
+    public DjelatnikUnos(JList<Djelatnik> lista) {
         initComponents();
         obradaD = new ObradaDjelatnik();
          setTitle("Unos djelatnika");
+         this.lista=lista;
         
     }
 
@@ -163,6 +166,7 @@ public class DjelatnikUnos extends javax.swing.JFrame {
         try {
             obradaD.create();
             lblUspjehD.setText("Djelatnik uspješno unesen!");
+            lista.repaint();
         }catch(ZooException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
         }

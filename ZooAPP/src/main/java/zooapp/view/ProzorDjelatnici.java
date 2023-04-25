@@ -250,7 +250,7 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPregledDActionPerformed
 
     private void btnUnosDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosDActionPerformed
-      new DjelatnikUnos().setVisible(true);
+      new DjelatnikUnos(lstListaD).setVisible(true);
     }//GEN-LAST:event_btnUnosDActionPerformed
 
     private void btnStatistikaDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatistikaDActionPerformed
@@ -278,6 +278,7 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
 
         try {
             obradaD.delete();
+            lstListaD.repaint();
             //ucitaj();
         } catch (ZooException ex) {
             JOptionPane.showMessageDialog(
@@ -295,7 +296,7 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
         
         obradaD.setEntitet(lstListaD.getSelectedValue());
         var s = obradaD.getEntitet();
-        dpr = new DjelatnikPromjena(s.getIme(),s.getPrezime(),s.getIBAN(),s);
+        dpr = new DjelatnikPromjena(s.getIme(),s.getPrezime(),s.getIBAN(),s, lstListaD);
         dpr.prikazi();
         
         

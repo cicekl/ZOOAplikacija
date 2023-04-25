@@ -228,8 +228,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ProzorIzbornik().setVisible(true);
-        dispose();
+     dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtPretragaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPretragaActionPerformed
@@ -237,7 +236,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPretragaActionPerformed
 
     private void btnUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosActionPerformed
-    new ZivotinjaUnos(getObradaZ()).setVisible(true);
+    new ZivotinjaUnos(getObradaZ(),lstLista).setVisible(true);
     }//GEN-LAST:event_btnUnosActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -305,6 +304,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
 
         try {
             obradaZ.delete();
+            lstLista.repaint();
             ucitaj();
         } catch (ZooException ex) {
             JOptionPane.showMessageDialog(
@@ -331,7 +331,7 @@ public class ProzorZivotinje extends javax.swing.JFrame {
         } else {
             dS = null;
         }
-        zpr = new ZivotinjaPromjena(dR, dD, dS, s ,getObradaZ());
+        zpr = new ZivotinjaPromjena(dR, dD, dS, s ,getObradaZ(),lstLista);
         zpr.prikazi();
 
     }//GEN-LAST:event_btnIzmjenaActionPerformed

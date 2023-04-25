@@ -10,6 +10,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaDjelatnik;
 import zooapp.controller.ObradaProstorija;
@@ -19,6 +20,7 @@ import zooapp.model.Prostorija;
 import zooapp.model.Zivotinja;
 import zooapp.util.ZooException;
 
+
 /**
  *
  * @author Lorena
@@ -27,6 +29,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
 
     private ObradaZivotinja obradaZ;
     private Zivotinja promjenaZ;
+    private JList<Zivotinja> lista;
 
     /**
      * Creates new form ZivotinjaPromjena
@@ -41,7 +44,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         //  obradaZ = ZivotinjaUnos.getObradaZ();
     }
 
-    public ZivotinjaPromjena(LocalDate datumR, LocalDate datumD, LocalDate datumS,Zivotinja s, ObradaZivotinja oz) {
+    public ZivotinjaPromjena(LocalDate datumR, LocalDate datumD, LocalDate datumS,Zivotinja s, ObradaZivotinja oz, JList<Zivotinja> lista) {
         initComponents();
         setTitle("Životinje");
         Date dateS = null;
@@ -52,6 +55,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         obradaZ = oz;
         napuniView(s.getIme(), s.getZivotinjskaVrsta(), s.getVrsta(), s.getDjelatnik(), s.getProstorija()   , Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), dateS, s.getMinimalnaKvadratura(), s.getMinimalnaKvadratura());
         //napuniView(ime, zivotinjskaVrsta, vrsta, djelatnik, prostorija, Date.from(datumR.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumD.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), Date.from(datumS.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()), minKv, minKu);
+        this.lista=lista;
     }
 
     /**
@@ -402,6 +406,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         try {
             obradaZ.update();
             lblUspjeh.setText("Životinja uspješno promijenjena!");
+            
         } catch (ZooException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
         }

@@ -225,7 +225,7 @@ public class ProzorProstorije extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPregledPActionPerformed
 
     private void btnUnosPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnosPActionPerformed
-        new ProstorijaUnos().setVisible(true);
+        new ProstorijaUnos(lstListaP).setVisible(true);
     }//GEN-LAST:event_btnUnosPActionPerformed
 
     private void btnStatistikaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatistikaPActionPerformed
@@ -274,7 +274,7 @@ public class ProzorProstorije extends javax.swing.JFrame {
         
         obradaP.setEntitet(lstListaP.getSelectedValue());
         var s = obradaP.getEntitet();
-        pr = new ProstorijaPromjena(s.getNaziv(), s.getSirina(), s.getDuzina(), s.getVisina(),s);
+        pr = new ProstorijaPromjena(s.getNaziv(), s.getSirina(), s.getDuzina(), s.getVisina(),s,lstListaP);
         pr.prikazi();
         
     }//GEN-LAST:event_btnIzmjenaPActionPerformed

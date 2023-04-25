@@ -9,6 +9,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaDjelatnik;
 import zooapp.controller.ObradaProstorija;
@@ -25,16 +26,18 @@ import zooapp.util.ZooException;
 public class ZivotinjaUnos extends javax.swing.JFrame {
     
    private static ObradaZivotinja obradaZ;
+   private JList<Zivotinja> lista;
 
     /**
      * Creates new form ZivotinjaUnos
      */
-    public ZivotinjaUnos(ObradaZivotinja oz) {
+    public ZivotinjaUnos(ObradaZivotinja oz, JList<Zivotinja> lista) {
         initComponents();
         obradaZ = oz;
         ucitajDjelatnike();
         ucitajProstorije();
         ucitajZivotinjskeVrste();
+        this.lista=lista;
     }
 
     /**
@@ -234,6 +237,7 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         try {
             obradaZ.create();
            lblUspjeh.setText("Životinja uspješno unesena!");
+           lista.repaint();
         }catch(ZooException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
         }

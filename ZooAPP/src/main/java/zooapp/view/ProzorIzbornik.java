@@ -150,7 +150,6 @@ public class ProzorIzbornik extends javax.swing.JFrame {
 
     private void btnZivotinjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZivotinjeActionPerformed
        new ProzorZivotinje().setVisible(true);
-       dispose();
     }//GEN-LAST:event_btnZivotinjeActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -159,7 +158,6 @@ public class ProzorIzbornik extends javax.swing.JFrame {
 
     private void btnDjelatniciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDjelatniciActionPerformed
         new ProzorDjelatnici().setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnDjelatniciActionPerformed
 
     private void btnOpisAplikacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpisAplikacijeActionPerformed
@@ -168,7 +166,6 @@ public class ProzorIzbornik extends javax.swing.JFrame {
 
     private void btnProstorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProstorijeActionPerformed
         new ProzorProstorije().setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnProstorijeActionPerformed
 
     /**

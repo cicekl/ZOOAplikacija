@@ -4,6 +4,7 @@
  */
 package zooapp.view;
 
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import zooapp.controller.ObradaProstorija;
 import zooapp.model.Prostorija;
@@ -17,7 +18,7 @@ public class ProstorijaPromjena extends javax.swing.JFrame {
     
     private ObradaProstorija obradaP;
     private Prostorija p;
-
+    private JList<Prostorija> lista;
     /**
      * Creates new form ProstorijaPromjena
      */
@@ -27,12 +28,13 @@ public class ProstorijaPromjena extends javax.swing.JFrame {
         setTitle("Prostorije");
     }
 
-     public ProstorijaPromjena(String naziv, Integer sirina, Integer duzina, Integer visina, Prostorija s) {
+     public ProstorijaPromjena(String naziv, Integer sirina, Integer duzina, Integer visina, Prostorija s, JList<Prostorija> lista) {
         initComponents();
         obradaP = new ObradaProstorija();
         setTitle("Prostorije");
         napuniView(naziv,sirina,duzina,visina);
         p = s;
+        this.lista=lista;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,6 +208,7 @@ public class ProstorijaPromjena extends javax.swing.JFrame {
         try {
             obradaP.update();
            lblUspjeh.setText("Prostorija uspješno promijenjena!");
+           lista.repaint();
         } catch (ZooException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
         }
