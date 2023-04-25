@@ -235,7 +235,7 @@ public class ZivotinjaUnos extends javax.swing.JFrame {
         obradaZ.setEntitet(new Zivotinja());
         napuniModel();
         try {
-            obradaZ.create();
+           obradaZ.create();
            lblUspjeh.setText("Životinja uspješno unesena!");
            lista.repaint();
         }catch(ZooException ex) {

@@ -406,6 +406,7 @@ public class ZivotinjaPromjena extends javax.swing.JFrame {
         try {
             obradaZ.update();
             lblUspjeh.setText("Životinja uspješno promijenjena!");
+            lista.repaint();
             
         } catch (ZooException ex) {
             JOptionPane.showMessageDialog(getRootPane(), ex.getPoruka());
