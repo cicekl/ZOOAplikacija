@@ -33,6 +33,7 @@ public class ObradaProstorija extends Obrada<Prostorija> {
 
     @Override
     protected void kontrolaUnos() throws ZooException {
+        kontrolaPopunjenaPolja();
         kontrolaNaziv();
         kontrolaSirina();
         kontrolaVisina();
@@ -41,6 +42,7 @@ public class ObradaProstorija extends Obrada<Prostorija> {
 
     @Override
     protected void kontrolaPromjena() throws ZooException {
+        kontrolaPopunjenaPolja();
         kontrolaNaziv();
         kontrolaSirina();
         kontrolaVisina();
@@ -104,6 +106,18 @@ public class ObradaProstorija extends Obrada<Prostorija> {
             throw new ZooException("Dužina prostorije mora biti postavljena!");
         }
     }
+
+    private void kontrolaPopunjenaPolja() throws ZooException {
+    String[] provjera = {entitet.getNaziv(), 
+                         entitet.getSirina() != null ? entitet.getSirina().toString() : null, 
+                         entitet.getDuzina() != null ? entitet.getDuzina().toString() : null,
+                         entitet.getVisina() != null ? entitet.getVisina().toString() : null};
+    for (int i = 0; i < provjera.length; i++) {
+        if (provjera[i] == null || provjera[i].isEmpty()) {
+            throw new ZooException("Sva polja moraju biti popunjena!");
+        }
+    }
+}
     
     
     

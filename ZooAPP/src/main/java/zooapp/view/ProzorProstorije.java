@@ -253,6 +253,7 @@ public class ProzorProstorije extends javax.swing.JFrame {
 
         try {
             obradaP.delete();
+            lstListaP.repaint();
             //ucitaj();
         } catch (ZooException ex) {
             JOptionPane.showMessageDialog(
@@ -262,7 +263,6 @@ public class ProzorProstorije extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBrisanjePActionPerformed
 
     private void btnIzbornikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIzbornikActionPerformed
-        new ProzorIzbornik().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnIzbornikActionPerformed
 

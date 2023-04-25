@@ -231,8 +231,7 @@ public class ProzorDjelatnici extends javax.swing.JFrame {
     }//GEN-LAST:event_lstListaDValueChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new ProzorIzbornik().setVisible(true);
-        dispose();
+    dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnPregledDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPregledDActionPerformed

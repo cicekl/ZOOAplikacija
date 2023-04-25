@@ -191,8 +191,8 @@ public class ProstorijaUnos extends javax.swing.JFrame {
     private void napuniModel() {
         var s = obradaP.getEntitet();
         s.setNaziv(txtNaziv.getText());
-        s.setSirina(Integer.parseInt(txtSirina.getText()));
-        s.setDuzina(Integer.parseInt(txtDuzina.getText()));
-        s.setVisina(Integer.parseInt(txtVisina.getText()));
+        s.setSirina(!txtSirina.getText().isEmpty() ? Integer.valueOf(txtSirina.getText()) : null);
+        s.setDuzina(!txtDuzina.getText().isEmpty() ? Integer.valueOf(txtDuzina.getText()) : null);
+        s.setVisina(!txtVisina.getText().isEmpty() ? Integer.valueOf(txtVisina.getText()) : null);
     }
 }
