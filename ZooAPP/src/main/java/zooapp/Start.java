@@ -17,8 +17,6 @@ public class Start {
 
     public static void main(String[] args) {
        
-      //HibernateUtil.getSession();
-       // PocetniInsert.izvedi();
        try {
             UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
